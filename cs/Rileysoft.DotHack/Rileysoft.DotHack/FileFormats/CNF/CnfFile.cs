@@ -40,8 +40,8 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         /// <summary>
         /// Makes this object and the underlying Data object readonly
         /// </summary>
-        public void MakeReadonly () 
-        { 
+        public void MakeReadonly()
+        {
             _Data.MakeReadonly();
         }
 
@@ -95,7 +95,7 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         /// <summary>
         /// Serializes the data from this object into the CNF file format and writes it to the specified path
         /// </summary>
-        public void SerializeToPath (string path)
+        public void SerializeToPath(string path)
         {
             File.WriteAllBytes(path, Serialize());
         }
@@ -105,7 +105,7 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when this object is readonly</exception>
         /// <exception cref="InvalidDataException">Thrown when the provided input data is invalid</exception>
-        public void Deserialize (byte[] input)
+        public void Deserialize(byte[] input)
         {
             if (Readonly)
                 throw new InvalidOperationException(ReadonlyError);
@@ -118,7 +118,7 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when this object is readonly</exception>
         /// <exception cref="InvalidDataException">Thrown when the provided input data is invalid</exception>
-        public void Deserialize (string input)
+        public void Deserialize(string input)
         {
             if (Readonly)
                 throw new InvalidOperationException(ReadonlyError);
@@ -158,7 +158,7 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when this object is readonly</exception>
         /// /// <exception cref="InvalidDataException">Thrown when the provided input data is invalid</exception>
-        public void DeserializeFromPath (string path)
+        public void DeserializeFromPath(string path)
         {
             if (Readonly)
                 throw new InvalidOperationException(ReadonlyError);

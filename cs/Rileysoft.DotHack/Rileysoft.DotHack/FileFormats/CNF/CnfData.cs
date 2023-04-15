@@ -19,7 +19,7 @@
         /// <exception cref="InvalidOperationException">Thrown when this property is assigned while the object is readonly.</exception>
         public string? BOOT2
         {
-            get => _BOOT2; 
+            get => _BOOT2;
             set
             {
                 if (_Readonly)
@@ -35,7 +35,7 @@
         /// <exception cref="InvalidOperationException">Thrown when this property is assigned while the object is readonly.</exception>
         public string? VER
         {
-            get => _VER; 
+            get => _VER;
             set
             {
                 if (_Readonly)
@@ -98,7 +98,7 @@
         /// <summary>
         /// Sets this object as readonly
         /// </summary>
-        public void MakeReadonly ()
+        public void MakeReadonly()
         {
             _Readonly = true;
         }
