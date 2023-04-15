@@ -132,7 +132,7 @@ namespace Rileysoft.DotHack.FileFormats.CNF
                 if (setting.Length == 0)
                     continue;
 
-                int keyEndingIndex = setting.IndexOf(" = ");
+                int keyEndingIndex = setting.IndexOf(" = ", StringComparison.InvariantCulture);
                 if (keyEndingIndex == -1)
                     throw new InvalidDataException($"Cannot read CNF data, no key/value pair found for input: {setting}");
 
