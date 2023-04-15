@@ -15,6 +15,8 @@ namespace Rileysoft.DotHack.SLUS20267
                 VER = "1.00",
                 VMODE = "NTSC"
             };
+
+            CnfData.MakeReadonly();
         }
     }
 }
