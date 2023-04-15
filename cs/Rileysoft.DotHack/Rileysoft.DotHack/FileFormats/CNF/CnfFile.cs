@@ -157,7 +157,7 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         /// Deserializes CNF data from a file
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when this object is readonly</exception>
-        /// /// <exception cref="InvalidDataException">Thrown when the provided input data is invalid</exception>
+        /// <exception cref="InvalidDataException">Thrown when the provided input data is invalid</exception>
         public void DeserializeFromPath(string path)
         {
             if (Readonly)
