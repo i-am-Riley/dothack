@@ -10,7 +10,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
         [ExpectedException(typeof(InvalidOperationException))]
         public void DataSet_WhenReadonly_Throws ()
         {
-            CnfFile file = new CnfFile ();
+            CnfFile file = new();
             file.MakeReadonly();
             file.Data = new CnfData();
         }
@@ -57,7 +57,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
         [DataRow("VMODE = NTSC\r\nPARAM4 = abc\r\n", null, null, "NTSC", null, "abc")]
         public void Deserialize_TestData_ReturnsCorrectOuput(string expected, string? BOOT2 = null, string? VER = null, string? VMODE = null, string? PARAM2 = null, string? PARAM4 = null)
         {
-            CnfFile file = new CnfFile();
+            CnfFile file = new();
 
             file.Deserialize(expected);
             Assert.AreEqual(BOOT2, file.Data.BOOT2, "BOOT2 mismatch");
