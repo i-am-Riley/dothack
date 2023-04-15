@@ -2,7 +2,7 @@
 
 namespace Rileysoft.DotHack.SLUS20267
 {
-    public class Game
+    public static class Game
     {
         public const string ID = "SLUS-20267";
         public static readonly CnfData CnfData = new CnfData
