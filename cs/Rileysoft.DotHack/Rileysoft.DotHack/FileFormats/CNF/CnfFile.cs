@@ -120,6 +120,9 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         /// <exception cref="InvalidDataException">Thrown when the provided input data is invalid</exception>
         public void Deserialize(string input)
         {
+            if (input is null)
+                throw new ArgumentNullException(nameof(input));
+
             if (Readonly)
                 throw new InvalidOperationException(ReadonlyError);
 
