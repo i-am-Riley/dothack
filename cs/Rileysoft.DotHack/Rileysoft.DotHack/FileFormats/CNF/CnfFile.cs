@@ -133,8 +133,8 @@ namespace Rileysoft.DotHack.FileFormats.CNF
                 if (keyEndingIndex == -1)
                     throw new InvalidDataException($"Cannot read CNF data, no key/value pair found for input: {setting}");
 
-                string key = setting.Substring(0, keyEndingIndex);
-                string value = setting.Substring(keyEndingIndex + 3);
+                string key = setting[..keyEndingIndex];
+                string value = setting[(keyEndingIndex + 3)..];
 
                 if (key == "BOOT2")
                     Data.BOOT2 = value;
