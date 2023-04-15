@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using Rileysoft.DotHack.FileFormats.CNF;
 
+#pragma warning disable IDE0017 // Object initialization can be simplified
+
 namespace Rileysoft.DotHack.Tests.FileFormats.CNF
 {
     [TestClass]
@@ -68,3 +70,5 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
         }
     }
 }
+
+#pragma warning restore IDE0017
