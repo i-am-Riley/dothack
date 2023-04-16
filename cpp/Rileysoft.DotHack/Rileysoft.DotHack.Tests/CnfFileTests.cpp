@@ -7,11 +7,11 @@ using namespace Rileysoft::DotHack::FileFormats::CNF;
 
 namespace RileysoftDotHackTests
 {
-	TEST_CLASS(RileysoftDotHackTests)
+	TEST_CLASS(CnfFileTests)
 	{
 	public:
-		
-		TEST_METHOD(TestMethod1)
+
+		TEST_METHOD(Test_Dummy_Works)
 		{
 			CnfFile* file = new CnfFile();
 			file->Dummy();
