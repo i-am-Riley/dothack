@@ -13,9 +13,9 @@ VMODE = NTSC
 A ``PARAM2`` and ``PARAM4`` can also be present but aren't.
 
 ## Loading in C#
-For C# reference the following for use to load a CNF file:
-[CnfFile](https://github.com/i-am-Riley/dothack/blob/main/cs/Rileysoft.DotHack/Rileysoft.DotHack/FileFormats/CNF/CnfFile.cs) - Performs I/O to read/write CNF data.
-[CnfData](https://github.com/i-am-Riley/dothack/blob/main/cs/Rileysoft.DotHack/Rileysoft.DotHack/FileFormats/CNF/CnfData.cs) - Defines CNF data.
+For C# reference the following for use to load a CNF file:  
+[CnfFile](https://github.com/i-am-Riley/dothack/blob/main/cs/Rileysoft.DotHack/Rileysoft.DotHack/FileFormats/CNF/CnfFile.cs) - Performs I/O to read/write CNF data.  
+[CnfData](https://github.com/i-am-Riley/dothack/blob/main/cs/Rileysoft.DotHack/Rileysoft.DotHack/FileFormats/CNF/CnfData.cs) - Defines CNF data.  
 
 Code Example:
 ```cs
