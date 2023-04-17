@@ -74,19 +74,19 @@ namespace Rileysoft.DotHack.FileFormats.CNF
         {
             string output = @"";
 
-            if (Data.BOOT2 is not null)
+            if (Data.BOOT2 is not null && Data.BOOT2.Length > 0)
                 output += $"BOOT2 = {Data.BOOT2}\r\n";
 
-            if (Data.VER is not null)
+            if (Data.VER is not null && Data.VER.Length > 0)
                 output += $"VER = {Data.VER}\r\n";
 
-            if (Data.VMODE is not null)
+            if (Data.VMODE is not null && Data.VMODE.Length > 0)
                 output += $"VMODE = {Data.VMODE}\r\n";
 
-            if (Data.PARAM2 is not null)
+            if (Data.PARAM2 is not null && Data.PARAM2.Length > 0)
                 output += $"PARAM2 = {Data.PARAM2}\r\n";
 
-            if (Data.PARAM4 is not null)
+            if (Data.PARAM4 is not null && Data.PARAM4.Length > 0)
                 output += $"PARAM4 = {Data.PARAM4}\r\n";
 
             return Encoding.ASCII.GetBytes(output);

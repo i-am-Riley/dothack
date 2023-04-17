@@ -30,6 +30,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
         [DataRow("BOOT2 = abc\r\nVER = def\r\nVMODE = NTSC\r\n", "abc", "def", "NTSC")]
         [DataRow("BOOT2 = abc\r\nVER = def\r\nVMODE = NTSC\r\nPARAM2 = 0X10_0:95B938471614330245787F8F4C39ED0E\r\n", "abc", "def", "NTSC", "0X10_0:95B938471614330245787F8F4C39ED0E")]
         [DataRow("VMODE = NTSC\r\nPARAM4 = abc\r\n", null, null, "NTSC", null, "abc")]
+        [DataRow("BOOT2 = abc\r\n", "abc", "", "", "", "")]
         public void Serialize_TestData_ReturnsCorrectOuput(string expected, string? BOOT2 = null, string? VER = null, string? VMODE = null, string? PARAM2 = null, string? PARAM4 = null)
         {
             byte[] expectedASCII = Encoding.ASCII.GetBytes(expected);
