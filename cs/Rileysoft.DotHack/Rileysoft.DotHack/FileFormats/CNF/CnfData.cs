@@ -6,12 +6,12 @@
     public class CnfData
     {
         private const string ReadonlyError = "Object is readonly";
-        private string? _BOOT2 = null;
-        private string? _VER = null;
-        private string? _VMODE = null;
-        private string? _PARAM2 = null;
-        private string? _PARAM4 = null;
-        private bool _Readonly = false;
+        private string? _BOOT2;
+        private string? _VER;
+        private string? _VMODE;
+        private string? _PARAM2;
+        private string? _PARAM4;
+        private bool _Readonly;
 
         /// <summary>
         /// Full path to the executable to launch
