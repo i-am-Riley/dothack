@@ -9,7 +9,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
     {
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void BOOT2Set_WhenReadonly_Throws()
+        public void SetBOOT2_WhenReadonly_Throws()
         {
             CnfData cnfData = new();
             cnfData.MakeReadonly();
@@ -19,7 +19,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void VERSet_WhenReadonly_Throws()
+        public void SetVER_WhenReadonly_Throws()
         {
             CnfData cnfData = new();
             cnfData.MakeReadonly();
@@ -29,7 +29,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void VMODESet_WhenReadonly_Throws()
+        public void SetVMODE_WhenReadonly_Throws()
         {
             CnfData cnfData = new();
             cnfData.MakeReadonly();
@@ -39,7 +39,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void PARAM2Set_WhenReadonly_Throws()
+        public void SetPARAM2_WhenReadonly_Throws()
         {
             CnfData cnfData = new();
             cnfData.MakeReadonly();
@@ -49,7 +49,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void PARAM4Set_WhenReadonly_Throws()
+        public void SetPARAM4_WhenReadonly_Throws()
         {
             CnfData cnfData = new();
             cnfData.MakeReadonly();
@@ -58,35 +58,35 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
         }
 
         [TestMethod]
-        public void BOOT2Set_WhenNotReadonly_Works()
+        public void SetBOOT2_WhenNotReadonly_Works()
         {
             CnfData cnfData = new();
             cnfData.BOOT2 = "";
         }
 
         [TestMethod]
-        public void VERSet_WhenNotReadonly_Works()
+        public void SetVER_WhenNotReadonly_Works()
         {
             CnfData cnfData = new();
             cnfData.VER = "";
         }
 
         [TestMethod]
-        public void VMODESet_WhenNotReadonly_Works()
+        public void SetVMODE_WhenNotReadonly_Works()
         {
             CnfData cnfData = new();
             cnfData.VMODE = "";
         }
 
         [TestMethod]
-        public void PARAM2Set_WhenNotReadonly_Works()
+        public void SetPARAM2_WhenNotReadonly_Works()
         {
             CnfData cnfData = new();
             cnfData.PARAM2 = "";
         }
 
         [TestMethod]
-        public void PARAM4Set_WhenNotReadonly_Works()
+        public void SetPARAM4_WhenNotReadonly_Works()
         {
             CnfData cnfData = new();
             cnfData.PARAM4 = "";
