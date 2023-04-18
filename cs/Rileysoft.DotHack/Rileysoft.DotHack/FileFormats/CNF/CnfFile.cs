@@ -12,16 +12,13 @@ namespace Rileysoft.DotHack.FileFormats.CNF
 
         public CnfFile() { }
 
-        public CnfFile(CnfData data) : this()
-        {
-            _Data = data;
-        }
-
         /// <summary>
         /// Creates a new instance of CnfFile and if makeReadonly is set to true, makes this and the passed data readonly.
         /// </summary>
-        public CnfFile(CnfData data, bool makeReadonly = false) : this(data)
+        public CnfFile(CnfData data, bool makeReadonly = false)
         {
+            _Data = data;
+
             if (makeReadonly)
                 MakeReadonly();
         }
