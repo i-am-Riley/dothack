@@ -10,7 +10,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
     {
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void DataSet_WhenReadonly_Throws()
+        public void SetData_WhenReadonly_Throws()
         {
             CnfFile file = new();
             file.MakeReadonly();
@@ -18,7 +18,7 @@ namespace Rileysoft.DotHack.Tests.FileFormats.CNF
         }
 
         [TestMethod]
-        public void DataSet_WhenNotReadonly_Works()
+        public void SetData_WhenNotReadonly_Works()
         {
             var file = new CnfFile();
             file.Data = new CnfData();
