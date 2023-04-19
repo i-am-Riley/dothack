@@ -10,11 +10,20 @@ namespace RileysoftDotHackTests
 	TEST_CLASS(CnfFileTests)
 	{
 	public:
-
-		TEST_METHOD(Test_Dummy_Works)
+		TEST_METHOD(SetData_WhenReadonly_Throws)
 		{
-			CnfFile* file = new CnfFile();
-			file->Dummy();
+			Assert::ExpectException<std::logic_error>([] {
+				CnfFile* cnfFile = new CnfFile();
+				cnfFile->MakeReadonly();
+
+				cnfFile->GetData()->SetBOOT2("test");
+			});
+		}
+
+		TEST_METHOD(SetData_WhenNotReadonly_Works)
+		{
+			CnfFile* cnfFile = new CnfFile();
+			cnfFile->GetData()->SetBOOT2("test");
 		}
 	};
 }
