@@ -25,6 +25,12 @@
     <Filter Include="Header Files\FileFormats\CNF">
       <UniqueIdentifier>{02035a69-e845-4ccf-b7e5-b8c1bb78ce75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SLUS20267">
+      <UniqueIdentifier>{273fb20a-c2a5-4aa1-adaa-2e8c423a887a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SLUS20267">
+      <UniqueIdentifier>{edbc9928-c4a2-4c8f-ae72-82c7fd691dbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -39,6 +45,9 @@
     <ClInclude Include="CnfFile.h">
       <Filter>Header Files\FileFormats\CNF</Filter>
     </ClInclude>
+    <ClInclude Include="SLUS20267_Game.h">
+      <Filter>Header Files\SLUS20267</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -52,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="CnfFile.cpp">
       <Filter>Source Files\FileFormats\CNF</Filter>
+    </ClCompile>
+    <ClCompile Include="SLUS20267_Game.cpp">
+      <Filter>Source Files\SLUS20267</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
