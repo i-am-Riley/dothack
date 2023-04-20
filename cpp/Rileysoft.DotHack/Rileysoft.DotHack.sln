@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rileysoft.DotHack", "Rileys
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rileysoft.DotHack.Tests", "Rileysoft.DotHack.Tests\Rileysoft.DotHack.Tests.vcxproj", "{E4EC3616-463E-40BD-9113-3A20FE49A55C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rileysoft.DotHack.IOTests", "Rileysoft.DotHack.IOTests\Rileysoft.DotHack.IOTests.vcxproj", "{FD712051-A181-4E17-8509-EB387A61FBAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{E4EC3616-463E-40BD-9113-3A20FE49A55C}.Release|x64.Build.0 = Release|x64
 		{E4EC3616-463E-40BD-9113-3A20FE49A55C}.Release|x86.ActiveCfg = Release|Win32
 		{E4EC3616-463E-40BD-9113-3A20FE49A55C}.Release|x86.Build.0 = Release|Win32
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Debug|x64.ActiveCfg = Debug|x64
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Debug|x64.Build.0 = Debug|x64
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Debug|x86.ActiveCfg = Debug|Win32
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Debug|x86.Build.0 = Debug|Win32
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Release|x64.ActiveCfg = Release|x64
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Release|x64.Build.0 = Release|x64
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Release|x86.ActiveCfg = Release|Win32
+		{FD712051-A181-4E17-8509-EB387A61FBAA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

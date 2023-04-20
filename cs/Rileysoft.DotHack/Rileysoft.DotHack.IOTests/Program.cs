@@ -9,6 +9,7 @@ Console.WriteLine("");
 if (File.Exists("system.cnf"))
 {
     File.Delete("system.cnf");
+    Console.WriteLine("Deleted old system.cnf file");
 }
 
 CnfFile cnfFile = new CnfFile();
