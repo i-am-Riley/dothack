@@ -198,6 +198,9 @@ void Rileysoft::DotHack::FileFormats::CNF::CnfFile::SerializeToPath(std::string 
 
 void Rileysoft::DotHack::FileFormats::CNF::CnfFile::DeserializeFromPath(std::string path)
 {
+	if (m_data == nullptr)
+		m_data = new CnfData();
+
 	if (m_data->GetReadonly())
 		throw std::logic_error(readonly_error);
 
