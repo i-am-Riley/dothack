@@ -25,6 +25,7 @@ namespace Rileysoft
 				{
 				public:
 					RILEYSOFTDOTHACK_API CnfFile();
+					RILEYSOFTDOTHACK_API ~CnfFile();
 					RILEYSOFTDOTHACK_API CnfFile(CnfData* cnfData);
 					RILEYSOFTDOTHACK_API CnfFile(CnfData* cnfData, bool makeReadonly = false);
 					RILEYSOFTDOTHACK_API CnfFile(std::string path, bool makeReadonly = false);

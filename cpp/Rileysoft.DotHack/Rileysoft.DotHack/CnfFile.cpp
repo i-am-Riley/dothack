@@ -17,6 +17,12 @@ Rileysoft::DotHack::FileFormats::CNF::CnfFile::CnfFile()
 	m_data = new CnfData();
 }
 
+Rileysoft::DotHack::FileFormats::CNF::CnfFile::~CnfFile()
+{
+	delete m_data;
+	m_data = nullptr;
+}
+
 Rileysoft::DotHack::FileFormats::CNF::CnfFile::CnfFile(CnfData* cnfData)
 {
 	if (cnfData == nullptr)
