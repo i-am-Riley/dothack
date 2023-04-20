@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rileysoft.DotHack", "Rileysoft.DotHack\Rileysoft.DotHack.csproj", "{CB69D17B-3C36-4E76-BB7D-14DA093BF260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rileysoft.DotHack.Tests", "Rileysoft.DotHack.Tests\Rileysoft.DotHack.Tests.csproj", "{C7DDAEE5-D554-4E5B-BBBF-2A56E4E8A34B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rileysoft.DotHack.Tests", "Rileysoft.DotHack.Tests\Rileysoft.DotHack.Tests.csproj", "{C7DDAEE5-D554-4E5B-BBBF-2A56E4E8A34B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rileysoft.DotHack.IOTests", "Rileysoft.DotHack.IOTests\Rileysoft.DotHack.IOTests.csproj", "{2E777840-F5F2-4021-90EB-C8E1D540A939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C7DDAEE5-D554-4E5B-BBBF-2A56E4E8A34B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7DDAEE5-D554-4E5B-BBBF-2A56E4E8A34B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7DDAEE5-D554-4E5B-BBBF-2A56E4E8A34B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E777840-F5F2-4021-90EB-C8E1D540A939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E777840-F5F2-4021-90EB-C8E1D540A939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E777840-F5F2-4021-90EB-C8E1D540A939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E777840-F5F2-4021-90EB-C8E1D540A939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
