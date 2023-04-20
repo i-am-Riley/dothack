@@ -130,66 +130,61 @@ void Rileysoft::DotHack::FileFormats::CNF::CnfFile::Deserialize(std::string inpu
 		throw std::logic_error(readonly_error);
 
 	m_data = new CnfData();
-
-	std::vector<int> newlines;
-
-	for (int i = 0; i < input.length() - 1; i++)
+	
+	size_t i = 0;
+	while (i < input.length())
 	{
-		if (input[i] == '\r' && input[i + 1] == '\n')
-		{
-			newlines.push_back(i);
-		}
-	}
+		size_t endOfLine = input.find("\r\n", i);
 
-	for (int i = 0; i < newlines.size(); i++)
-	{
-		int start = 0;
+		// if not found, exit
+		if (endOfLine == std::string::npos)
+			break;
 		
-		if (i > 0)
+		size_t keyValueSeparator = input.find(" = ", i);
+
+		// not a valid key/value pair
+		if (keyValueSeparator == std::string::npos)
 		{
-			start = newlines[i - 1]+2;
+			i = endOfLine + 2;
+			continue;
 		}
 
-		int end = newlines[i] - 1;
-		int length = end - start;
+		std::string key = input.substr(i, keyValueSeparator - i);
+		std::string value = input.substr(keyValueSeparator + 3, endOfLine - keyValueSeparator - 3);
 
-		if (length > ver_len)
+		if (key.length() == 3 && key == "VER")
 		{
-			if (input.substr(start, ver_len).compare(ver_str) == 0)
+			m_data->SetVER(value);
+		}
+		else if (key.length() == 5)
+		{
+			if (key == "BOOT2")
 			{
-				m_data->SetVER(input.substr(start + ver_len + 1, end));
-				continue;
+				m_data->SetBOOT2(value);
+			}
+
+			if (key == "VMODE")
+			{
+				m_data->SetVMODE(value);
+			}
+		}
+		else if (key.length() == 6)
+		{
+			if (key[0] == 'P' && key[1] == 'A' && key[2] == 'R' && key[3] == 'A' && key[4] == 'M')
+			{
+				if (key[5] == '2')
+				{
+					m_data->SetPARAM2(value);
+				}
+				else if (key[5] == '4')
+				{
+					m_data->SetPARAM4(value);
+				}
 			}
 		}
 
-		if (length > boot2_len)
-		{
-			if (input.substr(start, boot2_len).compare(boot2_str) == 0)
-			{
-				m_data->SetBOOT2(input.substr(start + boot2_len + 1, end));
-				continue;
-			}
-
-			if (input.substr(start, vmode_len).compare(vmode_str) == 0)
-			{
-				m_data->SetVMODE(input.substr(start + vmode_len + 1, end));
-				continue;
-			}
-		}
-
-		if (length > param2_len)
-		{
-			if (input.substr(start, param2_len).compare(param2_str) == 0)
-			{
-				m_data->SetPARAM2(input.substr(start + param2_len + 1, end));
-				continue;
-			}
-
-			if (input.substr(start, param4_len).compare(param4_str) == 0)
-			{
-				m_data->SetPARAM4(input.substr(start + param4_len + 1, end));
-			}
-		}
+		i = endOfLine + 2;
+		continue;
 	}
 }
 
