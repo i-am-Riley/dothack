@@ -38,7 +38,7 @@ Rileysoft::DotHack::FileFormats::CNF::CnfFile::CnfFile(CnfData* cnfData, bool ma
 
 Rileysoft::DotHack::FileFormats::CNF::CnfFile::CnfFile(std::string path, bool makeReadonly)
 {
-	m_data = nullptr;
+	m_data = new CnfData();
 	DeserializeFromPath(path);
 	
 	if (makeReadonly)
