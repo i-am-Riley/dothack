@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rileysoft.DotHack.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -71,50 +72,6 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
                 Deserialize(ms);
             }
         }
-
-        private static ushort ReadUnsignedShort(byte[] bytes, int offset = 0)
-        {
-            return (ushort)(
-                (ushort)bytes[offset] + 
-                ((ushort)bytes[offset + 1] * (ushort)0x100));
-        }
-
-        private static uint ReadUnsignedInt(byte[] bytes, int offset = 0)
-        {
-            return (uint)(
-                (uint)bytes[offset] + 
-                ((uint)bytes[offset + 1] * (uint)0x100) + 
-                ((uint)bytes[offset + 2] * (uint)0x10000) + 
-                ((uint)bytes[offset + 3] * (uint)0x1000000));
-        }
-
-        private static string ReadCString(Stream stream)
-        {
-            char[] charBuf = new char[1];
-            byte[] readBuf = new byte[1];
-            int len = 0;
-
-            while (stream.Read(readBuf, 0, 1) == 1)
-            {
-                if (readBuf[0] == 0)
-                    break;
-
-                if (len == charBuf.Length)
-                {
-                    char[] cloneBuf = new char[charBuf.Length * 2];
-                    for (int i=0; i<len; i++)
-                    {
-                        cloneBuf[i] = charBuf[i];
-                    }
-                    charBuf = cloneBuf;
-                }
-
-                charBuf[len++] = Convert.ToChar(readBuf[0]);
-            }
-
-            return new string(charBuf, 0, len);
-        }
-
         public void Deserialize(Stream stream)
         {
             if (stream == null)
@@ -123,26 +80,26 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             byte[] buffer = new byte[14];
             stream.Read(buffer, 0, 12);
 
-            m_offset = ReadUnsignedInt(buffer);
-            m_magic_main = ReadUnsignedShort(buffer, 4);
-            m_type = ReadUnsignedInt(buffer, 6);
-            m_magic_compiler = ReadUnsignedShort(buffer, 10);
+            m_offset = buffer.ReadUnsignedInt();
+            m_magic_main = buffer.ReadUnsignedShort(4);
+            m_type = buffer.ReadUnsignedInt(6);
+            m_magic_compiler = buffer.ReadUnsignedShort(10);
             if (m_magic_compiler != magic_compiler)
             {
                 Debug.WriteLine($"magic compiler prefix mismatch - exp: {magic_compiler:X2} act: {m_magic_compiler:X2}");
             }
 
-            m_compiler = ReadCString(stream);
+            m_compiler = stream.ReadCString();
 
             stream.Read(buffer, 12, 2);
 
-            m_magic_file = ReadUnsignedShort(buffer, 12);
+            m_magic_file = buffer.ReadUnsignedShort(12);
             if (m_magic_file != magic_file)
             {
                 Debug.WriteLine($"magic file prefix mismatch - exp: {magic_file:X2} act: {m_magic_file:X2}");
             }
             
-            m_file = ReadCString(stream);
+            m_file = stream.ReadCString();
         }
     }
 }
