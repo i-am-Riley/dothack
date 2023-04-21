@@ -25,6 +25,22 @@ var file = new CnfFile("SYSTEM.CNF", true); // Reads SYSTEM.CNF and sets the und
 var cnfData = file.Data;
 ```
 
+## Loading in C++
+For C++ reference the following for use to load a CNF file:  
+[CnfFile](https://github.com/i-am-Riley/dothack/blob/main/cpp/Rileysoft.DotHack/Rileysoft.DotHack/CnfFile.h) - Performs I/O to read/write CNF data.  
+[CnfData](https://github.com/i-am-Riley/dothack/blob/main/cpp/Rileysoft.DotHack/Rileysoft.DotHack/CnfData.h) - Defines CNF data.
+
+Code Example:
+```cpp
+#include "CnfFile.h"
+#include "CnfData.h"
+
+using namespace Rileysoft::DotHack::FileFormats::CNF;
+
+CnfFile* file = new CnfFile("SYSTEM.CNF", true); // Reads SYSTEM.CNF and sets the underlying data to readonly.
+CnfData* cnfData = file->GetData();
+```
+
 ## References
 - Reference [this constructor](https://github.com/i-am-Riley/dothack/blob/2e1323c5b0c44c8092cf7bfc0e69eeb2741f4ecf/cs/Rileysoft.DotHack/Rileysoft.DotHack/FileFormats/CNF/CnfFile.cs#L32) for more information on the constructor used in this example.
 - Reference [PS Dev Wiki](https://www.psdevwiki.com/ps2/System.cnf) for more information on ``System.cnf``.
