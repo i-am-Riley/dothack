@@ -33,7 +33,8 @@ if (cnfFileRead.Data.BOOT2 == "Test" &&
     cnfFileRead.Data.PARAM4 == null)
 {
     Console.WriteLine("OK!");
-} else
+}
+else
 {
     Console.WriteLine("Mismatched system.cnf");
 }

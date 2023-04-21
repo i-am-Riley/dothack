@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rileysoft.DotHack.Extensions
+﻿namespace Rileysoft.DotHack.Extensions
 {
     public static class ByteArrayExtensions
     {

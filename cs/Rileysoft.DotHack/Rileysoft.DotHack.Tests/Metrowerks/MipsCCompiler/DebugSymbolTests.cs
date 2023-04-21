@@ -1,15 +1,9 @@
 ﻿using Rileysoft.DotHack.Metrowerks.MipsCCompiler;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
 {
-    [TestClass] 
+    [TestClass]
     public class DebugSymbolTests
     {
         [DataTestMethod]
@@ -31,7 +25,7 @@ namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
         [DataRow("sysmem.cpp._ccFree", "MW MIPS C Compiler", "D:\\usr\\RpgUS\\prog\\system\\sysmem.cpp")]
         [DataRow("sysmem.cpp.ccMemReduce", "MW MIPS C Compiler", "D:\\usr\\RpgUS\\prog\\system\\sysmem.cpp")]
         [DataRow("sysmem.cpp.ccMalloc", "MW MIPS C Compiler", "D:\\usr\\RpgUS\\prog\\system\\sysmem.cpp")]
-        public void Deserialize_Inputs_ReturnsBasicResults (string symbolFile, string compiler, string file)
+        public void Deserialize_Inputs_ReturnsBasicResults(string symbolFile, string compiler, string file)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = $"Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler.Symbols.{symbolFile}.sym";

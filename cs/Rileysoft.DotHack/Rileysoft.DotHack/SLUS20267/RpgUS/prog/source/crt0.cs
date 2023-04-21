@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rileysoft.DotHack.SLUS20267.RpgUS.prog.source
+﻿namespace Rileysoft.DotHack.SLUS20267.RpgUS.prog.source
 {
     /// <summary>
     /// See: https://en.wikipedia.org/wiki/Crt0

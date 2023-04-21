@@ -1,10 +1,5 @@
 ﻿using Rileysoft.DotHack.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 #pragma warning disable CA1024 // Use properties where appropriate
 namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
@@ -22,7 +17,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
         private string m_file;
         private uint m_offset;
         private uint m_stype;
-        
+
 
         public DebugSymbol()
         {
@@ -45,42 +40,42 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             Deserialize(stream);
         }
 
-        public string? GetCompiler ()
+        public string? GetCompiler()
         {
             return m_compiler;
         }
 
-        public void SetCompiler (string compiler)
+        public void SetCompiler(string compiler)
         {
             m_compiler = compiler;
         }
 
-        public string? GetFile ()
+        public string? GetFile()
         {
             return m_file;
         }
 
-        public void SetFile (string file)
+        public void SetFile(string file)
         {
             m_file = file;
         }
 
-        public uint GetOffset ()
+        public uint GetOffset()
         {
             return m_offset;
         }
 
-        public void SetOffset (uint offset)
+        public void SetOffset(uint offset)
         {
             m_offset = offset;
         }
 
-        public uint GetSType ()
+        public uint GetSType()
         {
             return m_stype;
         }
 
-        public void SetSSType (uint stype)
+        public void SetSSType(uint stype)
         {
             m_stype = stype;
         }
@@ -124,7 +119,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             {
                 Debug.WriteLine($"magic file prefix mismatch - exp: {magic_file:X2} act: {m_magic_file:X2}");
             }
-            
+
             m_file = stream.ReadCString();
         }
     }
