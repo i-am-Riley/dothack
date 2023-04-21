@@ -21,7 +21,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
         private int m_magic_file;
         private string m_file;
         private uint m_offset;
-        private uint m_type;
+        private uint m_stype;
         
 
         public DebugSymbol()
@@ -32,7 +32,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             m_magic_file = 0;
             m_file = "";
             m_offset = 0;
-            m_type = 0;
+            m_stype = 0;
         }
 
         public DebugSymbol(byte[] data) : this()
@@ -64,7 +64,27 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
         {
             m_file = file;
         }
-        
+
+        public uint GetOffset ()
+        {
+            return m_offset;
+        }
+
+        public void SetOffset (uint offset)
+        {
+            m_offset = offset;
+        }
+
+        public uint GetSType ()
+        {
+            return m_stype;
+        }
+
+        public void SetSSType (uint stype)
+        {
+            m_stype = stype;
+        }
+
         public void Deserialize(byte[] data)
         {
             using (MemoryStream ms = new MemoryStream(data))
@@ -72,6 +92,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
                 Deserialize(ms);
             }
         }
+
         public void Deserialize(Stream stream)
         {
             if (stream == null)
@@ -82,7 +103,12 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
 
             m_offset = buffer.ReadUnsignedInt();
             m_magic_main = buffer.ReadUnsignedShort(4);
-            m_type = buffer.ReadUnsignedInt(6);
+            if (m_magic_main != magic_main)
+            {
+                Debug.WriteLine($"magic main prefix mismatch - exp: {magic_main:X2} act: {m_magic_main:X2}");
+            }
+
+            m_stype = buffer.ReadUnsignedInt(6);
             m_magic_compiler = buffer.ReadUnsignedShort(10);
             if (m_magic_compiler != magic_compiler)
             {
