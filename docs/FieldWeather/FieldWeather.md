@@ -27,213 +27,213 @@
 ## Lava (Type: 0)
 
 ### Noon (Type: 0-0)
-![Noon lava field](/FieldWeather/0-0.png)
+![Noon lava field](/docs/FieldWeather/0-0.png)
 
 ### Evening (Type: 0-1)
-![Evening lava field](/FieldWeather/0-1.png)
+![Evening lava field](/docs/FieldWeather/0-1.png)
 
 ### Night (Type: 0-2)
-![Night lava field](/FieldWeather/0-2.png)
+![Night lava field](/docs/FieldWeather/0-2.png)
 
 ### Morning (Type: 0-3)
-![Morning lava field](/FieldWeather/0-3.png)
+![Morning lava field](/docs/FieldWeather/0-3.png)
 
 ## Scorched Earth (Type: 1)
 
 ### Noon (Type: 1-0)
-![Noon scorched earth field](/FieldWeather/1-0.png)
+![Noon scorched earth field](/docs/FieldWeather/1-0.png)
 
 ### Evening (Type: 1-1)
-![Evening scorched earth field](/FieldWeather/1-1.png)
+![Evening scorched earth field](/docs/FieldWeather/1-1.png)
 
 ### Night (Type: 1-2)
-![Night scorched earth field](/FieldWeather/1-2.png)
+![Night scorched earth field](/docs/FieldWeather/1-2.png)
 
 ### Morning (Type: 1-3)
-![Morning scorched earth field](/FieldWeather/1-3.png)
+![Morning scorched earth field](/docs/FieldWeather/1-3.png)
 
 ## Desert (Type: 2)
 
 ### Noon (Type: 2-0)
-![Noon desert field](/FieldWeather/2-0.png)
+![Noon desert field](/docs/FieldWeather/2-0.png)
 
 ### Evening (Type: 2-1)
-![Evening desert field](/FieldWeather/2-1.png)
+![Evening desert field](/docs/FieldWeather/2-1.png)
 
 ### Night (Type: 2-2)
-![Night desert field](/FieldWeather/2-2.png)
+![Night desert field](/docs/FieldWeather/2-2.png)
 
 ### Morning (Type: 2-3)
-![Morning desert field](/FieldWeather/2-3.png)
+![Morning desert field](/docs/FieldWeather/2-3.png)
 
 ## Beach / Tropical (Type: 3)
 
 ### Noon (Type: 3-0)
-![Noon tropical field](/FieldWeather/3-0.png)
+![Noon tropical field](/docs/FieldWeather/3-0.png)
 
 ### Evening (Type: 3-1)
-![Evening tropical field](/FieldWeather/3-1.png)
+![Evening tropical field](/docs/FieldWeather/3-1.png)
 
 ### Night (Type: 3-2)
-![Night tropical field](/FieldWeather/3-2.png)
+![Night tropical field](/docs/FieldWeather/3-2.png)
 
 ### Morning (Type: 3-3)
-![Morning tropical field](/FieldWeather/3-3.png)
+![Morning tropical field](/docs/FieldWeather/3-3.png)
 
 ## Forest (Type: 4)
 
 ### Noon (Type: 4-0)
-![Noon Forest field](/FieldWeather/4-0.png)
+![Noon Forest field](/docs/FieldWeather/4-0.png)
 
 ### Evening (Type: 4-1)
-![Evening Forest field](/FieldWeather/4-1.png)
+![Evening Forest field](/docs/FieldWeather/4-1.png)
 
 ### Night (Type: 4-2)
-![Night Forest field](/FieldWeather/4-2.png)
+![Night Forest field](/docs/FieldWeather/4-2.png)
 
 ### Morning (Type: 4-3)
-![Morning Forest field](/FieldWeather/4-3.png)
+![Morning Forest field](/docs/FieldWeather/4-3.png)
 
 ## Snow (Type: 5)
 
 ### Noon (Type: 5-0)
-![Noon Snow field](/FieldWeather/5-0.png)
+![Noon Snow field](/docs/FieldWeather/5-0.png)
 
 ### Evening (Type: 5-1)
-![Evening Snow field](/FieldWeather/5-1.png)
+![Evening Snow field](/docs/FieldWeather/5-1.png)
 
 ### Night (Type: 5-2)
-![Night Snow field](/FieldWeather/5-2.png)
+![Night Snow field](/docs/FieldWeather/5-2.png)
 
 ### Morning (Type: 5-3)
-![Morning Snow field](/FieldWeather/5-3.png)
+![Morning Snow field](/docs/FieldWeather/5-3.png)
 
 ### Snow During Day (Type: 5-8)
-![Snow during day Snow field](/FieldWeather/5-8.png)
+![Snow during day Snow field](/docs/FieldWeather/5-8.png)
 
 ### Snow During Night (Type: 5-9)
-![Snow during night Snow field](/FieldWeather/5-9.png)
+![Snow during night Snow field](/docs/FieldWeather/5-9.png)
 
 ## Arctic (Type: 6)
 
 ### Noon (Type: 6-0)
-![Noon Arctic field](/FieldWeather/6-0.png)
+![Noon Arctic field](/docs/FieldWeather/6-0.png)
 
 ### Evening (Type: 6-1)
-![Evening Arctic field](/FieldWeather/6-1.png)
+![Evening Arctic field](/docs/FieldWeather/6-1.png)
 
 ### Night (Type: 6-2)
-![Night Arctic field](/FieldWeather/6-2.png)
+![Night Arctic field](/docs/FieldWeather/6-2.png)
 
 ### Morning (Type: 6-3)
-![Morning Arctic field](/FieldWeather/6-3.png)
+![Morning Arctic field](/docs/FieldWeather/6-3.png)
 
 ### Snow During Day (Type: 6-8)
-![Snow during day Arctic field](/FieldWeather/6-8.png)
+![Snow during day Arctic field](/docs/FieldWeather/6-8.png)
 
 ### Snow During Night (Type: 6-9)
-![Snow during night Arctic field](/FieldWeather/6-9.png)
+![Snow during night Arctic field](/docs/FieldWeather/6-9.png)
 
 ## Earth (Type: 7)
 
 ### Noon (Type: 7-0)
-![Noon Earth field](/FieldWeather/7-0.png)
+![Noon Earth field](/docs/FieldWeather/7-0.png)
 
 ### Evening (Type: 7-1)
-![Evening Earth field](/FieldWeather/7-1.png)
+![Evening Earth field](/docs/FieldWeather/7-1.png)
 
 ### Night (Type: 7-2)
-![Night Earth field](/FieldWeather/7-2.png)
+![Night Earth field](/docs/FieldWeather/7-2.png)
 
 ### Morning (Type: 7-3)
-![Morning Earth field](/FieldWeather/7-3.png)
+![Morning Earth field](/docs/FieldWeather/7-3.png)
 
 ### Rain During Day (Type: 7-4)
-![Rain during day Earth field](/FieldWeather/7-4.png)
+![Rain during day Earth field](/docs/FieldWeather/7-4.png)
 
 ### Rain During Night (Type: 7-5)
-![Rain during night Earth field](/FieldWeather/7-5.png)
+![Rain during night Earth field](/docs/FieldWeather/7-5.png)
 
 ### Thunderstorm During Day (Type: 7-6)
-![Thunderstorm during day Earth field](/FieldWeather/7-6.png)
+![Thunderstorm during day Earth field](/docs/FieldWeather/7-6.png)
 
 ### Thunderstorm During Night (Type: 7-7)
-![Thunderstorm during night Earth field](/FieldWeather/7-7.png)
+![Thunderstorm during night Earth field](/docs/FieldWeather/7-7.png)
 
 ## Dark (Type: 7)
 
 ### Noon (Type: 8-0)
-![Noon Dark field](/FieldWeather/8-0.png)
+![Noon Dark field](/docs/FieldWeather/8-0.png)
 
 ### Evening (Type: 8-1)
-![Evening Dark field](/FieldWeather/8-1.png)
+![Evening Dark field](/docs/FieldWeather/8-1.png)
 
 ### Night (Type: 8-2)
-![Night Dark field](/FieldWeather/8-2.png)
+![Night Dark field](/docs/FieldWeather/8-2.png)
 
 ### Morning (Type: 8-3)
-![Morning Dark field](/FieldWeather/8-3.png)
+![Morning Dark field](/docs/FieldWeather/8-3.png)
 
 ### Rain During Day (Type: 8-4)
-![Rain during day Dark field](/FieldWeather/8-4.png)
+![Rain during day Dark field](/docs/FieldWeather/8-4.png)
 
 ### Rain During Night (Type: 8-5)
-![Rain during night Dark field](/FieldWeather/8-5.png)
+![Rain during night Dark field](/docs/FieldWeather/8-5.png)
 
 ### Thunderstorm During Day (Type: 8-6)
-![Thunderstorm during day Dark field](/FieldWeather/8-6.png)
+![Thunderstorm during day Dark field](/docs/FieldWeather/8-6.png)
 
 ### Thunderstorm During Night (Type: 8-7)
-![Thunderstorm during night Dark field](/FieldWeather/8-7.png)
+![Thunderstorm during night Dark field](/docs/FieldWeather/8-7.png)
 
 ## Mushroom (Type: 9)
 
 ### Noon (Type: 9-0)
-![Noon Mushroom field](/FieldWeather/9-0.png)
+![Noon Mushroom field](/docs/FieldWeather/9-0.png)
 
 ### Evening (Type: 9-1)
-![Evening Mushroom field](/FieldWeather/9-1.png)
+![Evening Mushroom field](/docs/FieldWeather/9-1.png)
 
 ### Night (Type: 9-2)
-![Night Mushroom field](/FieldWeather/9-2.png)
+![Night Mushroom field](/docs/FieldWeather/9-2.png)
 
 ### Morning (Type: 9-3)
-![Morning Mushroom field](/FieldWeather/9-3.png)
+![Morning Mushroom field](/docs/FieldWeather/9-3.png)
 
 ### Rain During Day (Type: 9-4)
-![Rain during day Mushroom field](/FieldWeather/9-4.png)
+![Rain during day Mushroom field](/docs/FieldWeather/9-4.png)
 
 ### Rain During Night (Type: 9-5)
-![Rain during night Mushroom field](/FieldWeather/9-5.png)
+![Rain during night Mushroom field](/docs/FieldWeather/9-5.png)
 
 ### Thunderstorm During Day (Type: 9-6)
-![Thunderstorm during day Mushroom field](/FieldWeather/9-6.png)
+![Thunderstorm during day Mushroom field](/docs/FieldWeather/9-6.png)
 
 ### Thunderstorm During Night (Type: 9-7)
-![Thunderstorm during night Mushroom field](/FieldWeather/9-7.png)
+![Thunderstorm during night Mushroom field](/docs/FieldWeather/9-7.png)
 
 ## Prairie (Type: 10)
 
 ### Noon (Type: 10-0)
-![Noon Prairie field](/FieldWeather/10-0.png)
+![Noon Prairie field](/docs/FieldWeather/10-0.png)
 
 ### Evening (Type: 10-1)
-![Evening Prairie field](/FieldWeather/10-1.png)
+![Evening Prairie field](/docs/FieldWeather/10-1.png)
 
 ### Night (Type: 10-2)
-![Night Prairie field](/FieldWeather/10-2.png)
+![Night Prairie field](/docs/FieldWeather/10-2.png)
 
 ### Morning (Type: 10-3)
-![Morning Prairie field](/FieldWeather/10-3.png)
+![Morning Prairie field](/docs/FieldWeather/10-3.png)
 
 ### Rain During Day (Type: 10-4)
-![Rain during day Prairie field](/FieldWeather/10-4.png)
+![Rain during day Prairie field](/docs/FieldWeather/10-4.png)
 
 ### Rain During Night (Type: 10-5)
-![Rain during night Prairie field](/FieldWeather/10-5.png)
+![Rain during night Prairie field](/docs/FieldWeather/10-5.png)
 
 ### Thunderstorm During Day (Type: 10-6)
-![Thunderstorm during day Prairie field](/FieldWeather/10-6.png)
+![Thunderstorm during day Prairie field](/docs/FieldWeather/10-6.png)
 
 ### Thunderstorm During Night (Type: 10-7)
-![Thunderstorm during night Prairie field](/FieldWeather/10-7.png)
+![Thunderstorm during night Prairie field](/docs/FieldWeather/10-7.png)
