@@ -1,4 +1,5 @@
-﻿namespace Rileysoft.DotHack.SLUS20267.RpgUS.prog.source
+﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
+namespace Rileysoft.DotHack.SLUS20267.RpgUS.prog.source
 {
     /// <summary>
     /// See: https://en.wikipedia.org/wiki/Crt0
@@ -7,9 +8,21 @@
     /// </summary>
     public static class crt0
     {
-        public static void init()
+        public static void ENTRYPOINT()
         {
             // 
         }
+
+
+        public static void _exit()
+        {
+             //
+        }
+
+        public static void _root()
+        {
+            //
+        }
     }
 }
+#pragma warning restore CA1707 // Identifiers should not contain underscores
