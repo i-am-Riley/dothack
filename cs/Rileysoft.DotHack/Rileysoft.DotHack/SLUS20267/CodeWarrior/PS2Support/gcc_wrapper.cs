@@ -4,6 +4,7 @@ namespace Rileysoft.DotHack.SLUS20267.CodeWarrior.PS2Support
 
     /// <summary>
     /// C:\CodeWarrior\PS2 Support\gcc_wrapper.c
+    /// GCC wrappers provide customization for GCC by setting default compiler options, defining macros, or performing other tasks before invoking the actual compiler. 
     /// </summary>
     public static class gcc_wrapper
 
@@ -15,7 +16,7 @@ namespace Rileysoft.DotHack.SLUS20267.CodeWarrior.PS2Support
         /// <returns>float</returns>
         public static float _ulltof (ulong ul)
         {
-            return (float)ul;
+            return ul;
         }
 
         /// <summary>
