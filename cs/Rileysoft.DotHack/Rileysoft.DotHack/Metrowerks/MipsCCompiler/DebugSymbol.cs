@@ -58,8 +58,8 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
     public class DebugSymbol
     {
         public const ushort MagicHeader = 0x0136;
-        public const ushort CompiledAssembly = 0x0080;
-        public const ushort CompiledC = 0x0400;
+        public const ushort CompiledAssembly = 0x8000;
+        public const ushort CompiledC = 0x0004;
 
         public long StreamSize { get; set; }
         public long StartPos { get; set; }
