@@ -1,4 +1,5 @@
-﻿using Rileysoft.DotHack.Metrowerks.MipsCCompiler;
+﻿using Rileysoft.DotHack.Extensions;
+using Rileysoft.DotHack.Metrowerks.MipsCCompiler;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -116,6 +117,72 @@ namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
         {
             DebugSymbol sym = GetDebugSymbol(symbolFile);
             Assert.AreEqual((uint)stype, sym.CompiledType, $"\n{symbolFile}\nexp: {stype:X4}\nactual: {sym.CompiledType:X4}");
+        }
+
+        [DataTestMethod]
+        [DataRow("crt0.s")]
+        [DataRow("gcc_wrapper.c.1")]
+        [DataRow("gcc_wrapper.c._f_ulltof")]
+        [DataRow("gcc_wrapper.c._dpflt")]
+        [DataRow("gcc_wrapper.c._dpfgt")]
+        [DataRow("gcc_wrapper.c._dpfge")]
+        [DataRow("mwUtils_PS2.c.1")]
+        [DataRow("mwUtils_PS2.c.mwInit")]
+        [DataRow("mwUtils_PS2.c.mwBload")]
+        [DataRow("mwUtils_PS2.c.mwLoadOverlay")]
+        [DataRow("system.cpp.1")]
+        [DataRow("sysmem.cpp.1")]
+        [DataRow("sysmem.cpp.SearchFree")]
+        [DataRow("sysmem.cpp.AddTbl")]
+        [DataRow("sysmem.cpp._ccMalloc")]
+        [DataRow("sysmem.cpp._ccFree")]
+        [DataRow("sysmem.cpp.ccMemReduce")]
+        [DataRow("sysmem.cpp.ccMalloc")]
+        public void DebugOutput (string symbolFile)
+        {
+            DebugSymbol sym = GetDebugSymbol(symbolFile);
+
+            Debug.WriteLine($"Symbol File: {symbolFile}");
+            Debug.WriteLine($"Symbol Stream Size: {sym.StreamSize} ({sym.StreamSize:X8})");
+            Debug.WriteLine($"Symbol Stream StartPos: {sym.StartPos} ({sym.StartPos:X8})");
+            Debug.WriteLine($"Symbol Stream EndPos: {sym.EndPos} ({sym.EndPos:X8})\n");
+
+            Debug.WriteLine($"Offset: 0x{sym.Offset.ToStringHexLE()}");
+            Debug.WriteLine($"Magic Header: {sym.MagicHeaderValue.ToStringHexLE()}");
+            Debug.WriteLine($"Compiled Type: {sym.CompiledType.ToStringHexLE()}");
+            Debug.WriteLine($"Compiled Type Name: {sym.CompiledTypeName}");
+            Debug.WriteLine($"{nameof(sym.Unknown1)}: {sym.Unknown1.ToStringHexLE()} - {sym.Unknown1}");
+            Debug.WriteLine($"{nameof(sym.Unknown2)}: {sym.Unknown2.ToStringHexLE()} - {sym.Unknown2}");
+            Debug.WriteLine($"{nameof(sym.Unknown3)}: {sym.Unknown3.ToStringHexLE()} - {sym.Unknown3}");
+            Debug.WriteLine($"{nameof(sym.Unknown4)}: {sym.Unknown4.ToStringHexLE()} - {sym.Unknown4}");
+            Debug.WriteLine($"{nameof(sym.Unknown5)}: {sym.Unknown5.ToInt32().ToStringHexLE()} - {sym.Unknown5.ToInt32()}");
+            Debug.WriteLine($"{nameof(sym.Unknown6)}: {sym.Unknown6.ToStringHexLE()} - {sym.Unknown6}");
+            Debug.WriteLine($"Fields (num: {sym.Fields.Count})");
+            for (int i=0; i<sym.Fields.Count; i++)
+            {
+                var field = sym.Fields[i];
+                Debug.WriteLine($"[{i}]");
+                DebugOutputField(field);
+            }
+        }
+
+        private void DebugOutputField (DebugSymbolField field)
+        {
+            Debug.WriteLine($"  Field Type: {field.FieldType.ToStringHexLE()}");
+            Debug.WriteLine($"  Field Type Name: {field.FieldTypeName}");
+
+            switch (field.FieldType)
+            {
+                case DebugSymbolField.TypeCompiler:
+                    Debug.WriteLine($"  Value: {field.VCompiler}");
+                    break;
+                case DebugSymbolField.TypeString:
+                    Debug.WriteLine($"  Value: {field.VString}");
+                    break;
+                default:
+                    Debug.WriteLine("  Unknown Value");
+                    break;
+            }
         }
     }
 }
