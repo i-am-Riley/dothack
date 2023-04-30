@@ -53,5 +53,15 @@
 
             return (short)value;
         }
+
+        public static IntPtr ReadIntPtr(this byte[] bytes, int offset = 0)
+        {
+            return new IntPtr(ReadInt(bytes, offset));
+        }
+
+        public static UIntPtr ReadUIntPtr(this byte[] bytes, int offset = 0)
+        {
+            return new UIntPtr(ReadUnsignedInt(bytes, offset));
+        }
     }
 }

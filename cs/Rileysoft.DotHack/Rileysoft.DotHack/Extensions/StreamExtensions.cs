@@ -58,6 +58,16 @@
             return bytes.ReadShort();
         }
 
+        public static IntPtr ReadIntPtr(this Stream stream)
+        {
+            return new IntPtr(ReadInt(stream));
+        }
+
+        public static UIntPtr ReadUIntPtr(this Stream stream)
+        {
+            return new UIntPtr(ReadUnsignedInt(stream));
+        }
+
         public static string ReadCString(this Stream stream)
         {
             if (stream == null)
