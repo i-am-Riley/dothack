@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Rileysoft.DotHack.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,7 +70,7 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         ELFOSABI_STANDALONE
     }
 
-    public class ElfData
+    public class ElfHeader
     {
         public static readonly byte[] EI_MAG = new byte[] { 0x74, 0x45, 0x4C, 0x46 };
         public ELFCLASS EI_CLASS { get; set; } = ELFCLASS.ELFCLASSNONE;
@@ -75,7 +78,37 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         public ELFVERSION EI_VERSION { get; set; } = ELFVERSION.EV_NONE;
         public ELFOSABI EI_OSABI { get; set; } = ELFOSABI.ELFOSABI_NONE;
         public byte EI_ABIVERSION { get; set; }
+        
+        public bool HeaderMismatch { get; private set; }
 
+        public void ReadFromStream (Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            byte[] data = new byte[16];
+            stream.Read(data, 0, 16);
+
+            HeaderMismatch = false;
+            for (int i = 0; i < EI_MAG.Length; i++)
+            {
+                if (EI_MAG[i] != data[i])
+                {
+                    HeaderMismatch = true;
+                    break;
+                }
+            }
+
+            if (HeaderMismatch)
+                Debug.WriteLine($"Header mismatched: \nGot: {data.ToStringHexExpanded(0, 4)}\nExpected: {EI_MAG.ToStringHexExpanded()}");
+
+        }
+    }
+
+    public class ElfData
+    {
+        
+        
 
 
     }

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 
 namespace Rileysoft.DotHack.Extensions
 {
@@ -88,6 +89,29 @@ namespace Rileysoft.DotHack.Extensions
             }
             
             return string.Join("", bytes.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
+        }
+
+        public static string ToStringHexExpanded(this byte[] bytes, int offset = 0, int count = -1)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            if (count == -1)
+                count = bytes.Length - offset;
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i=0; i<count; i++)
+            {
+                byte b = bytes[offset + i];
+
+                if (i < count - 1)
+                    sb.Append(b.ToString("X2", CultureInfo.InvariantCulture) + " ");
+                else
+                    sb.Append(b.ToString("X2", CultureInfo.InvariantCulture));
+            }
+
+            return sb.ToString();
         }
     }
 }
