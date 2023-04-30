@@ -4,6 +4,9 @@
     {
         public static uint ReadUnsignedInt (this Stream stream)
         {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
             byte[] bytes = new byte[4];
             int bytesRead = stream.Read(bytes, 0, 4);
 
@@ -15,6 +18,9 @@
 
         public static ushort ReadUnsignedShort (this Stream stream)
         {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
             byte[] bytes = new byte[2];
             int bytesRead = stream.Read(bytes, 0, 2);
 
@@ -26,6 +32,9 @@
 
         public static int ReadInt (this Stream stream)
         {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
             byte[] bytes = new byte[4];
             int bytesRead = stream.Read(bytes, 0, 4);
 
@@ -37,6 +46,9 @@
 
         public static short ReadShort(this Stream stream)
         {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
             byte[] bytes = new byte[2];
             int bytesRead = stream.Read(bytes, 0, 2);
 
