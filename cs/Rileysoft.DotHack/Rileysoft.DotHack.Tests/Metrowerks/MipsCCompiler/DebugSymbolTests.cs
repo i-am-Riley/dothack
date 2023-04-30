@@ -51,11 +51,13 @@ namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
         public void Deserialize_Inputs_ReturnsBasicResults(string symbolFile, string compiler, string file)
         {
             DebugSymbol sym = GetDebugSymbol(symbolFile);
+            Assert.IsTrue(sym.Fields.Count >= 2);
+            Assert.AreEqual(DebugSymbolField.TypeCompiler, sym.Fields[0].FieldType);
+            Assert.AreEqual(DebugSymbolField.TypeString, sym.Fields[1].FieldType);
+            Assert.AreEqual(compiler, sym.Fields[0].VCompiler);
+            Assert.AreEqual(file, sym.Fields[1].VString);
 
-            Assert.AreEqual(compiler, sym.GetCompiler());
-            Assert.AreEqual(file, sym.GetFile());
-
-            Debug.WriteLine($"{symbolFile} - {sym.GetOffset():X8}");
+            Debug.WriteLine($"{symbolFile} - {sym.Offset:X8}");
         }
 
         [DataTestMethod]
@@ -83,11 +85,11 @@ namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
 
             if (loadedOffset == -1)
             {
-                Assert.Inconclusive($"{symbolFile}\n{sym.GetOffset():X8}");
+                Assert.Inconclusive($"{symbolFile}\n{sym.Offset:X8}");
             }
             else
             {
-                Assert.AreEqual((uint)loadedOffset, sym.GetOffset(), $"\n{symbolFile}\nexpected {loadedOffset:X8}\ngot {sym.GetOffset():X8}");
+                Assert.AreEqual((uint)loadedOffset, sym.Offset, $"\n{symbolFile}\nexpected {loadedOffset:X8}\ngot {sym.Offset:X8}");
             }
         }
 
@@ -113,7 +115,7 @@ namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
         public void Deserialize_Inputs_ReturnsCorrectSType(string symbolFile, int stype)
         {
             DebugSymbol sym = GetDebugSymbol(symbolFile);
-            Assert.AreEqual((uint)stype, sym.GetSType(), $"\n{symbolFile}\nexp: {stype:X4}\nactual: {sym.GetSType():X4}");
+            Assert.AreEqual((uint)stype, sym.CompiledType, $"\n{symbolFile}\nexp: {stype:X4}\nactual: {sym.CompiledType:X4}");
         }
     }
 }

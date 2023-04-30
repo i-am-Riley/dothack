@@ -1,91 +1,25 @@
 ﻿using Rileysoft.DotHack.Extensions;
 using System.Diagnostics;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
-#pragma warning disable CA1024 // Use properties where appropriate
 namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
 {
-    public class DebugSymbol
+    public class DebugSymbolField
     {
-        private const ushort magic_main = 0x0136;
-        private const ushort magic_compiler = 0x0258;
-        private const ushort magic_file = 0x0038;
+        public const uint TypeString = 0x0038;
+        public const uint TypeCompiler = 0x0258;
 
-        private ushort m_magic_main;
-        private int m_magic_compiler;
-        private string m_compiler;
-        private int m_magic_file;
-        private string m_file;
-        private uint m_offset;
-        private uint m_stype;
+        public uint FieldType { get; set; }
+        public string VCompiler { get; set; } = "";
+        public string VString { get; set; } = "";
 
+        public DebugSymbolField() { }
 
-        public DebugSymbol()
-        {
-            m_magic_main = 0;
-            m_magic_compiler = 0;
-            m_compiler = "";
-            m_magic_file = 0;
-            m_file = "";
-            m_offset = 0;
-            m_stype = 0;
-        }
-
-        public DebugSymbol(byte[] data) : this()
-        {
-            Deserialize(data);
-        }
-
-        public DebugSymbol(Stream stream) : this()
+        public DebugSymbolField(Stream stream)
         {
             Deserialize(stream);
-        }
-
-        public string? GetCompiler()
-        {
-            return m_compiler;
-        }
-
-        public void SetCompiler(string compiler)
-        {
-            m_compiler = compiler;
-        }
-
-        public string? GetFile()
-        {
-            return m_file;
-        }
-
-        public void SetFile(string file)
-        {
-            m_file = file;
-        }
-
-        public uint GetOffset()
-        {
-            return m_offset;
-        }
-
-        public void SetOffset(uint offset)
-        {
-            m_offset = offset;
-        }
-
-        public uint GetSType()
-        {
-            return m_stype;
-        }
-
-        public void SetSSType(uint stype)
-        {
-            m_stype = stype;
-        }
-
-        public void Deserialize(byte[] data)
-        {
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                Deserialize(ms);
-            }
         }
 
         public void Deserialize(Stream stream)
@@ -93,35 +27,60 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
 
-            byte[] buffer = new byte[14];
-            stream.Read(buffer, 0, 12);
-
-            m_offset = buffer.ReadUnsignedInt();
-            m_magic_main = buffer.ReadUnsignedShort(4);
-            if (m_magic_main != magic_main)
+            FieldType = stream.ReadUnsignedShort();
+            switch (FieldType)
             {
-                Debug.WriteLine($"magic main prefix mismatch - exp: {magic_main:X2} act: {m_magic_main:X2}");
+                case TypeCompiler:
+                    VCompiler = stream.ReadCString();
+                    break;
+                case TypeString:
+                    VString = stream.ReadCString();
+                    break;
             }
+        }
+    }
+    public class DebugSymbol
+    {
+        public const uint MagicHeader = 0x0136;
+        public const uint CompiledAssembly = 0x0080;
+        public const uint CompiledC = 0x0400;
+        
+        public uint Offset { get; set; }
+        public ushort MagicHeaderValue { get; set; }
+        public uint CompiledType { get; set; }
+        public uint UnknownOne { get; set; }
+        public List<DebugSymbolField> Fields { get; set; } = new List<DebugSymbolField>();
 
-            m_stype = buffer.ReadUnsignedInt(6);
-            m_magic_compiler = buffer.ReadUnsignedShort(10);
-            if (m_magic_compiler != magic_compiler)
+        public DebugSymbol() { }
+
+        public DebugSymbol(byte[] bytes, int offset = 0, int count = -1)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            if (count == -1)
+                count = bytes.Length;
+            
+            using (MemoryStream ms = new MemoryStream(bytes, offset, count))
             {
-                Debug.WriteLine($"magic compiler prefix mismatch - exp: {magic_compiler:X2} act: {m_magic_compiler:X2}");
+                Deserialize(ms);
             }
+        }
 
-            m_compiler = stream.ReadCString();
+        public void Deserialize (Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
 
-            stream.Read(buffer, 12, 2);
+            Offset = stream.ReadUnsignedInt();
+            MagicHeaderValue = stream.ReadUnsignedShort();
+            Debug.WriteLineIf(MagicHeaderValue != MagicHeader, $"Magic Header Value is different:\nExpected: {MagicHeader:X4}\nGot: {MagicHeaderValue:X4}");
 
-            m_magic_file = buffer.ReadUnsignedShort(12);
-            if (m_magic_file != magic_file)
-            {
-                Debug.WriteLine($"magic file prefix mismatch - exp: {magic_file:X2} act: {m_magic_file:X2}");
-            }
-
-            m_file = stream.ReadCString();
+            CompiledType = stream.ReadUnsignedShort();
+            UnknownOne = stream.ReadUnsignedShort();
+            
+            Fields.Add(new DebugSymbolField(stream)); // Compiler
+            Fields.Add(new DebugSymbolField(stream)); // Compiled File Path
         }
     }
 }
-#pragma warning restore CA1024 // Use properties where appropriate
