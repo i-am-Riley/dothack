@@ -147,7 +147,7 @@ namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
             Debug.WriteLine($"Symbol Stream StartPos: {sym.StartPos} ({sym.StartPos:X8})");
             Debug.WriteLine($"Symbol Stream EndPos: {sym.EndPos} ({sym.EndPos:X8})\n");
 
-            Debug.WriteLine($"Offset: 0x{sym.Offset.ToStringHexLE()}");
+            Debug.WriteLine($"Offset: {sym.Offset.ToStringHexLE()}");
             Debug.WriteLine($"Magic Header: {sym.MagicHeaderValue.ToStringHexLE()}");
             Debug.WriteLine($"Compiled Type: {sym.CompiledType.ToStringHexLE()}");
             Debug.WriteLine($"Compiled Type Name: {sym.CompiledTypeName}");
