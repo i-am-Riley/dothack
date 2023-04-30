@@ -21,5 +21,17 @@ namespace Rileysoft.DotHack.Tests.Extensions
 
             Assert.AreEqual(expected, result);
         }
+
+        [DataTestMethod]
+        [DataRow(new byte[] { 0x00, 0x00 }, (short)0)]
+        [DataRow(new byte[] { 0xFF, 0xFF }, (short)-1)]
+        [DataRow(new byte[] { 0xFF, 0x7F }, (short)short.MaxValue)]
+        [DataRow(new byte[] { 0x00, 0x80 }, (short)short.MinValue)]
+        public void ReadShort_Inputs_ReturnCorrectResults(byte[] bytes, short expected)
+        {
+            short result = bytes.ReadShort();
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }

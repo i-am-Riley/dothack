@@ -35,6 +35,17 @@
             return bytes.ReadInt();
         }
 
+        internal static int ReadShort(this Stream stream)
+        {
+            byte[] bytes = new byte[2];
+            int bytesRead = stream.Read(bytes, 0, 2);
+
+            if (bytesRead < 2)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadShort();
+        }
+
         internal static string ReadCString(this Stream stream)
         {
             if (stream == null)

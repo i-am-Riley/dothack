@@ -31,14 +31,27 @@
                 (uint)bytes[offset + 2] * 0x10000u +
                 (uint)bytes[offset + 3] * 0x1000000u;
 
-            uint a = 1;
-
             if (value > int.MaxValue)
             {
                 return (int)((long)int.MinValue + (long)((long)value - (long)int.MaxValue - 1));
             }
 
             return (int)value;
+        }
+
+        public static short ReadShort(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            ushort value = (ushort)(((ushort)bytes[offset]) + ((ushort)bytes[offset + 1]) * ((ushort)0x100));
+
+            if (value > short.MaxValue)
+            {
+                return (short)((long)short.MinValue + (long)((long)value - (long)short.MaxValue - 1));
+            }
+
+            return (short)value;
         }
     }
 }
