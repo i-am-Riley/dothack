@@ -1,4 +1,6 @@
-﻿namespace Rileysoft.DotHack.Extensions
+﻿using System.Globalization;
+
+namespace Rileysoft.DotHack.Extensions
 {
     public static class ByteArrayExtensions
     {
@@ -62,6 +64,30 @@
         public static UIntPtr ReadUIntPtr(this byte[] bytes, int offset = 0)
         {
             return new UIntPtr(ReadUnsignedInt(bytes, offset));
+        }
+
+        public static string ToStringHexLE(this byte[] bytes, bool copy=false)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            byte[] _bytes = bytes;
+
+            if (!BitConverter.IsLittleEndian)
+            {
+                if (copy)
+                {
+                    _bytes = new byte[bytes.Length];
+                    for (int i=0; i<bytes.Length; i++)
+                    {
+                        _bytes[i] = bytes[i];
+                    }
+                }
+
+                Array.Reverse(_bytes);
+            }
+            
+            return string.Join("", bytes.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
         }
     }
 }
