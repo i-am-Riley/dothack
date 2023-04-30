@@ -1,8 +1,8 @@
 ﻿namespace Rileysoft.DotHack.Extensions
 {
-    internal static class StreamExtensions
+    public static class StreamExtensions
     {
-        internal static uint ReadUnsignedInt (this Stream stream)
+        public static uint ReadUnsignedInt (this Stream stream)
         {
             byte[] bytes = new byte[4];
             int bytesRead = stream.Read(bytes, 0, 4);
@@ -13,7 +13,7 @@
             return bytes.ReadUnsignedInt();
         }
 
-        internal static ushort ReadUnsignedShort (this Stream stream)
+        public static ushort ReadUnsignedShort (this Stream stream)
         {
             byte[] bytes = new byte[2];
             int bytesRead = stream.Read(bytes, 0, 2);
@@ -24,7 +24,7 @@
             return bytes.ReadUnsignedShort();
         }
 
-        internal static int ReadInt (this Stream stream)
+        public static int ReadInt (this Stream stream)
         {
             byte[] bytes = new byte[4];
             int bytesRead = stream.Read(bytes, 0, 4);
@@ -35,7 +35,7 @@
             return bytes.ReadInt();
         }
 
-        internal static int ReadShort(this Stream stream)
+        public static short ReadShort(this Stream stream)
         {
             byte[] bytes = new byte[2];
             int bytesRead = stream.Read(bytes, 0, 2);
@@ -46,7 +46,7 @@
             return bytes.ReadShort();
         }
 
-        internal static string ReadCString(this Stream stream)
+        public static string ReadCString(this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));

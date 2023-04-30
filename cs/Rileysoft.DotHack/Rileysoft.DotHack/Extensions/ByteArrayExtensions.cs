@@ -1,8 +1,8 @@
 ﻿namespace Rileysoft.DotHack.Extensions
 {
-    internal static class ByteArrayExtensions
+    public static class ByteArrayExtensions
     {
-        internal static ushort ReadUnsignedShort(this byte[] bytes, int offset = 0)
+        public static ushort ReadUnsignedShort(this byte[] bytes, int offset = 0)
         {
             if (bytes == null) throw new ArgumentNullException(nameof(bytes));
             return (ushort)(
@@ -10,7 +10,7 @@
                 ((ushort)bytes[offset + 1] * (ushort)0x100));
         }
 
-        internal static uint ReadUnsignedInt(this byte[] bytes, int offset = 0)
+        public static uint ReadUnsignedInt(this byte[] bytes, int offset = 0)
         {
             if (bytes == null) throw new ArgumentNullException(nameof(bytes));
             return (uint)(
@@ -20,7 +20,7 @@
                 ((uint)bytes[offset + 3] * (uint)0x1000000));
         }
 
-        internal static int ReadInt(this byte[] bytes, int offset = 0)
+        public static int ReadInt(this byte[] bytes, int offset = 0)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
@@ -39,7 +39,7 @@
             return (int)value;
         }
 
-        internal static short ReadShort(this byte[] bytes, int offset = 0)
+        public static short ReadShort(this byte[] bytes, int offset = 0)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
