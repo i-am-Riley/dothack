@@ -151,12 +151,12 @@ namespace Rileysoft.DotHack.Tests.Metrowerks.MipsCCompiler
             Debug.WriteLine($"Magic Header: {sym.MagicHeaderValue.ToStringHexLE()}");
             Debug.WriteLine($"Compiled Type: {sym.CompiledType.ToStringHexLE()}");
             Debug.WriteLine($"Compiled Type Name: {sym.CompiledTypeName}");
-            Debug.WriteLine($"{nameof(sym.Unknown1)}: {sym.Unknown1.ToStringHexLE()} - {sym.Unknown1}");
-            Debug.WriteLine($"{nameof(sym.Unknown2)}: {sym.Unknown2.ToStringHexLE()} - {sym.Unknown2}");
-            Debug.WriteLine($"{nameof(sym.Unknown3)}: {sym.Unknown3.ToStringHexLE()} - {sym.Unknown3}");
-            Debug.WriteLine($"{nameof(sym.Unknown4)}: {sym.Unknown4.ToStringHexLE()} - {sym.Unknown4}");
-            Debug.WriteLine($"{nameof(sym.Unknown5)}: {sym.Unknown5.ToInt32().ToStringHexLE()} - {sym.Unknown5.ToInt32()}");
-            Debug.WriteLine($"{nameof(sym.Unknown6)}: {sym.Unknown6.ToStringHexLE()} - {sym.Unknown6}");
+            Debug.WriteLine($"{nameof(sym.Unknown1)} ({sym.Unknown1.GetType().Name}): {sym.Unknown1.ToStringHexLE()} - {sym.Unknown1}");
+            Debug.WriteLine($"{nameof(sym.Unknown2)} ({sym.Unknown2.GetType().Name}): {sym.Unknown2.ToStringHexLE()} - {sym.Unknown2}");
+            Debug.WriteLine($"{nameof(sym.Unknown3)} ({sym.Unknown3.GetType().Name}): {sym.Unknown3.ToStringHexLE()} - {sym.Unknown3}");
+            Debug.WriteLine($"{nameof(sym.Unknown4)} ({sym.Unknown4.GetType().Name}): {sym.Unknown4.ToStringHexLE()} - {sym.Unknown4}");
+            Debug.WriteLine($"{nameof(sym.Unknown5)} ({sym.Unknown5.GetType().Name}): {sym.Unknown5.ToInt32().ToStringHexLE()} - {sym.Unknown5.ToInt32()}");
+            Debug.WriteLine($"{nameof(sym.Unknown6)} ({sym.Unknown6.GetType().Name}): {sym.Unknown6.ToStringHexLE()} - {sym.Unknown6}");
             Debug.WriteLine($"Fields (num: {sym.Fields.Count})");
             for (int i=0; i<sym.Fields.Count; i++)
             {
