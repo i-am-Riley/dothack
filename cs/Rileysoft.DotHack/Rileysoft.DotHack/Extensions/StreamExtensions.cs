@@ -24,6 +24,17 @@
             return bytes.ReadUnsignedShort();
         }
 
+        internal static int ReadInt (this Stream stream)
+        {
+            byte[] bytes = new byte[4];
+            int bytesRead = stream.Read(bytes, 0, 4);
+
+            if (bytesRead < 4)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadInt();
+        }
+
         internal static string ReadCString(this Stream stream)
         {
             if (stream == null)
