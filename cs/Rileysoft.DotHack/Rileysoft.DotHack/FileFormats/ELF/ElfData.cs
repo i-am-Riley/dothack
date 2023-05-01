@@ -581,9 +581,302 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         }
     }
 
+    public class Elf32_Phdr
+    {
+        /// <summary>
+        /// This member of the structure indicates what kind of
+        /// segment this array element describes or how to interpret
+        /// the array element's information.
+        /// </summary>
+        public ELFPTYPE p_type { get; set; } // uint
+
+        /// <summary>
+        /// This member holds the offset from the beginning of the
+        /// file at which the first byte of the segment resides.
+        /// </summary>
+        public uint p_offset { get; set; } // uint
+
+        /// <summary>
+        /// This member holds the virtual address at which the first
+        /// byte of the segment resides in memory.
+        /// </summary>
+        public uint p_vaddr { get; set; }
+
+        /// <summary>
+        /// On systems for which physical addressing is relevant, this
+        /// member is reserved for the segment's physical address.
+        /// Under BSD this member is not used and must be zero.
+        /// </summary>
+        public uint p_paddr { get; set; }
+
+        /// <summary>
+        /// This member holds the number of bytes in the file image of
+        /// the segment.  It may be zero.
+        /// </summary>
+        public uint p_filesz { get; set; }
+
+        /// <summary>
+        /// This member holds the number of bytes in the memory image
+        ///  of the segment.  It may be zero.
+        /// </summary>
+        public uint p_memsz { get; set; }
+
+        /// <summary>
+        /// This member holds a bit mask of flags relevant to the
+        /// segment:
+        /// 
+        /// PF_X   An executable segment.
+        /// PF_W   A writable segment.
+        /// PF_R   A readable segment.
+        ///
+        /// A text segment commonly has the flags PF_X and PF_R.  A
+        /// data segment commonly has PF_W and PF_R.
+        /// </summary>
+        public ELFPFLAGS p_flags { get; set; }
+
+        /// <summary>
+        /// This member holds the value to which the segments are
+        /// aligned in memory and in the file.  Loadable process
+        /// segments must have congruent values for p_vaddr and
+        /// p_offset, modulo the page size.  Values of zero and one
+        /// mean no alignment is required.  Otherwise, p_align should
+        /// be a positive, integral power of two, and p_vaddr should
+        /// equal p_offset, modulo p_align.
+        /// </summary>
+        public uint p_align { get; set; }
+
+        public void ReadFromStream(Stream stream, bool bigEndian)
+        {
+            if (bigEndian)
+            {
+                p_type = (ELFPTYPE)stream.ReadUnsignedIntBE();
+                p_offset = stream.ReadUnsignedIntBE();
+                p_vaddr = stream.ReadUnsignedIntBE();
+                p_paddr = stream.ReadUnsignedIntBE();
+                p_filesz = stream.ReadUnsignedIntBE();
+                p_memsz = stream.ReadUnsignedIntBE();
+                p_flags = (ELFPFLAGS)stream.ReadUnsignedIntBE();
+                p_align = stream.ReadUnsignedIntBE();
+            }
+            else
+            {
+                p_type = (ELFPTYPE)stream.ReadUnsignedIntLE();
+                p_offset = stream.ReadUnsignedIntLE();
+                p_vaddr = stream.ReadUnsignedIntLE();
+                p_paddr = stream.ReadUnsignedIntLE();
+                p_filesz = stream.ReadUnsignedIntLE();
+                p_memsz = stream.ReadUnsignedIntLE();
+                p_flags = (ELFPFLAGS)stream.ReadUnsignedIntLE();
+                p_align = stream.ReadUnsignedIntLE();
+            }
+        }
+    }
+
+    [Flags]
+    public enum ELFPFLAGS : uint
+    {
+        /// <summary>
+        /// An executable segment.
+        /// </summary>
+        PF_X = 1,
+
+        /// <summary>
+        /// A writable segment.
+        /// </summary>
+        PF_W = 2,
+
+        /// <summary>
+        /// A readable segment.
+        /// </summary>
+        PF_R = 4
+    }
+
+    public enum ELFPTYPE : uint
+    {
+        /// <summary>
+        /// The array element is unused and the other
+        /// members' values are undefined.  This lets the
+        /// program header have ignored entries.
+        /// </summary>
+        PT_NULL,
+
+        /// <summary>
+        /// The array element specifies a loadable segment,
+        /// described by p_filesz and p_memsz.  The bytes
+        /// from the file are mapped to the beginning of the
+        /// memory segment.  If the segment's memory size
+        /// p_memsz is larger than the file size p_filesz,
+        /// the "extra" bytes are defined to hold the value
+        /// 0 and to follow the segment's initialized area.
+        /// The file size may not be larger than the memory
+        /// size.  Loadable segment entries in the program
+        /// header table appear in ascending order, sorted
+        /// on the p_vaddr member.
+        /// </summary>
+        PT_LOAD,
+
+        /// <summary>
+        /// The array element specifies dynamic linking
+        /// information.
+        /// </summary>
+        PT_DYNAMIC,
+
+        /// <summary>
+        /// The array element specifies the location and
+        /// size of a null-terminated pathname to invoke as
+        /// an interpreter.  This segment type is meaningful
+        /// only for executable files (though it may occur
+        /// for shared objects).  However it may not occur
+        /// more than once in a file.  If it is present, it
+        /// must precede any loadable segment entry.
+        /// </summary>
+        PT_INTERP,
+
+        /// <summary>
+        /// The array element specifies the location of
+        /// notes (ElfN_Nhdr).
+        /// </summary>
+        PT_NOTE,
+
+        /// <summary>
+        /// This segment type is reserved but has
+        /// unspecified semantics.  Programs that contain an
+        /// array element of this type do not conform to the
+        /// ABI.
+        /// </summary>
+        PT_SHLIB,
+
+        /// <summary>
+        /// The array element, if present, specifies the
+        /// location and size of the program header table
+        /// itself, both in the file and in the memory image
+        /// of the program.  This segment type may not occur
+        /// more than once in a file.  Moreover, it may
+        /// occur only if the program header table is part
+        /// of the memory image of the program.  If it is
+        /// present, it must precede any loadable segment
+        /// entry.
+        /// </summary>
+        PT_PHDR,
+
+        /// <summary>
+        /// Values in the inclusive range [PT_LOPROC,
+        /// PT_HIPROC] are reserved for processor-specific
+        /// semantics.
+        /// </summary>
+        PT_LOPROC,
+
+        /// <summary>
+        /// Values in the inclusive range [PT_LOPROC,
+        /// PT_HIPROC] are reserved for processor-specific
+        /// semantics.
+        /// </summary>
+        PT_HIPROC,
+
+        /// <summary>
+        /// GNU extension which is used by the Linux kernel
+        /// to control the state of the stack via the flags
+        /// set in the p_flags member.
+        /// </summary>
+        PT_GNU_STACK
+    }
+
+    public class Elf64_Phdr
+    {
+        /// <summary>
+        /// This member of the structure indicates what kind of
+        /// segment this array element describes or how to interpret
+        /// the array element's information.
+        /// </summary>
+        public ELFPTYPE p_type { get; set; } // uint
+
+        /// <summary>
+        /// This member holds a bit mask of flags relevant to the
+        /// segment:
+        /// 
+        /// PF_X   An executable segment.
+        /// PF_W   A writable segment.
+        /// PF_R   A readable segment.
+        ///
+        /// A text segment commonly has the flags PF_X and PF_R.  A
+        /// data segment commonly has PF_W and PF_R.
+        /// </summary>
+        public ELFPFLAGS p_flags { get; set; } // uint
+
+        /// <summary>
+        /// This member holds the offset from the beginning of the
+        /// file at which the first byte of the segment resides.
+        /// </summary>
+        public ulong p_offset { get; set; }
+
+        /// <summary>
+        /// This member holds the virtual address at which the first
+        /// byte of the segment resides in memory.
+        /// </summary>
+        public ulong p_vaddr { get; set; }
+
+        /// <summary>
+        /// On systems for which physical addressing is relevant, this
+        /// member is reserved for the segment's physical address.
+        /// Under BSD this member is not used and must be zero.
+        /// </summary>
+        public ulong p_paddr { get; set; }
+
+        /// <summary>
+        /// This member holds the number of bytes in the file image of
+        /// the segment.  It may be zero.
+        /// </summary>
+        public ulong p_filesz { get; set; }
+
+        /// <summary>
+        /// This member holds the number of bytes in the memory image
+        ///  of the segment.  It may be zero.
+        /// </summary>
+        public ulong p_memsz { get; set; }
+
+        /// <summary>
+        /// This member holds the value to which the segments are
+        /// aligned in memory and in the file.  Loadable process
+        /// segments must have congruent values for p_vaddr and
+        /// p_offset, modulo the page size.  Values of zero and one
+        /// mean no alignment is required.  Otherwise, p_align should
+        /// be a positive, integral power of two, and p_vaddr should
+        /// equal p_offset, modulo p_align.
+        /// </summary>
+        public ulong p_align { get; set; }
+
+        public void ReadFromStream(Stream stream, bool bigEndian)
+        {
+            if (bigEndian)
+            {
+                p_type = (ELFPTYPE)stream.ReadUnsignedIntBE();
+                p_flags = (ELFPFLAGS)stream.ReadUnsignedIntBE();
+                p_offset = stream.ReadUnsignedLongBE();
+                p_vaddr = stream.ReadUnsignedLongBE();
+                p_paddr = stream.ReadUnsignedLongBE();
+                p_filesz = stream.ReadUnsignedLongBE();
+                p_memsz = stream.ReadUnsignedLongBE();
+                p_align = stream.ReadUnsignedLongBE();
+            }
+            else
+            {
+                p_type = (ELFPTYPE)stream.ReadUnsignedIntLE();
+                p_flags = (ELFPFLAGS)stream.ReadUnsignedIntLE();
+                p_offset = stream.ReadUnsignedLongLE();
+                p_vaddr = stream.ReadUnsignedLongLE();
+                p_paddr = stream.ReadUnsignedLongLE();
+                p_filesz = stream.ReadUnsignedLongLE();
+                p_memsz = stream.ReadUnsignedLongLE();
+                p_align = stream.ReadUnsignedLongLE();
+            }
+        }
+    }
+
     public class ElfData
     {
         public ElfHeader Ehdr { get; set; } = new ElfHeader();
+        public Elf32_Phdr? Phdr32 { get; set; }
+        public Elf64_Phdr? Phdr64 { get; set; }
 
         private ushort ReadUShort(Stream stream)
         {
