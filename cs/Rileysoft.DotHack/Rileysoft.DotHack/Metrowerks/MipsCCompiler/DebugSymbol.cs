@@ -43,7 +43,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
 
-            FieldType = stream.ReadUnsignedShort();
+            FieldType = stream.ReadUnsignedShortLE();
             switch (FieldType)
             {
                 case TypeCompiler:
@@ -115,21 +115,21 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             StreamSize = stream.Length;
             StartPos = stream.Position;
 
-            Offset = stream.ReadUnsignedInt();
-            MagicHeaderValue = stream.ReadUnsignedShort();
+            Offset = stream.ReadUnsignedIntLE();
+            MagicHeaderValue = stream.ReadUnsignedShortLE();
             Debug.WriteLineIf(MagicHeaderValue != MagicHeader, $"Magic Header Value is different:\nExpected: {MagicHeader:X4}\nGot: {MagicHeaderValue:X4}");
 
-            CompiledType = stream.ReadUnsignedShort();
-            Unknown1 = stream.ReadUnsignedShort();
+            CompiledType = stream.ReadUnsignedShortLE();
+            Unknown1 = stream.ReadUnsignedShortLE();
             
             Fields.Add(new DebugSymbolField(stream)); // Compiler
             Fields.Add(new DebugSymbolField(stream)); // Compiled File Path
 
-            Unknown2 = stream.ReadInt();
-            Unknown3 = stream.ReadShort();
-            Unknown4 = stream.ReadShort();
-            Unknown5 = stream.ReadIntPtr();
-            Unknown6 = stream.ReadShort();
+            Unknown2 = stream.ReadIntLE();
+            Unknown3 = stream.ReadShortLE();
+            Unknown4 = stream.ReadShortLE();
+            Unknown5 = stream.ReadIntPtrLE();
+            Unknown6 = stream.ReadShortLE();
 
             EndPos = stream.Position;
         }

@@ -6,5 +6,10 @@
         {
             return BitConverter.GetBytes(value).ToStringHexLE();
         }
+
+        public static string ToStringHexBE(this int value)
+        {
+            return BitConverter.GetBytes(value).ToStringHexBE();
+        }
     }
 }

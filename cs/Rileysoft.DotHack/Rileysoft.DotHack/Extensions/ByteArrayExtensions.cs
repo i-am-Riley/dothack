@@ -5,7 +5,7 @@ namespace Rileysoft.DotHack.Extensions
 {
     public static class ByteArrayExtensions
     {
-        public static ushort ReadUnsignedShort(this byte[] bytes, int offset = 0)
+        public static ushort ReadUnsignedShortLE(this byte[] bytes, int offset = 0)
         {
             if (bytes == null) throw new ArgumentNullException(nameof(bytes));
             return (ushort)(
@@ -13,7 +13,7 @@ namespace Rileysoft.DotHack.Extensions
                 ((ushort)bytes[offset + 1] * (ushort)0x100));
         }
 
-        public static uint ReadUnsignedInt(this byte[] bytes, int offset = 0)
+        public static uint ReadUnsignedIntLE(this byte[] bytes, int offset = 0)
         {
             if (bytes == null) throw new ArgumentNullException(nameof(bytes));
             return (uint)(
@@ -23,7 +23,7 @@ namespace Rileysoft.DotHack.Extensions
                 ((uint)bytes[offset + 3] * (uint)0x1000000));
         }
 
-        public static int ReadInt(this byte[] bytes, int offset = 0)
+        public static int ReadIntLE(this byte[] bytes, int offset = 0)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
@@ -36,13 +36,34 @@ namespace Rileysoft.DotHack.Extensions
 
             if (value > int.MaxValue)
             {
-                return (int)((long)int.MinValue + (long)((long)value - (long)int.MaxValue - 1));
+                value -= int.MaxValue;
+                int ivalue = (int)value;
+                ivalue *= -1;
+                ivalue = int.MinValue - ivalue - 1;
+
+                return ivalue;
             }
 
             return (int)value;
         }
 
-        public static short ReadShort(this byte[] bytes, int offset = 0)
+        public static ulong ReadUnsignedLongLE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            return (ulong)(
+                (ulong)bytes[offset] +
+                ((ulong)bytes[offset + 1] * (ulong)0x100UL) +
+                ((ulong)bytes[offset + 2] * (ulong)0x10000UL) +
+                ((ulong)bytes[offset + 3] * (ulong)0x1000000UL) +
+                ((ulong)bytes[offset + 4] * (ulong)0x100000000UL) +
+                ((ulong)bytes[offset + 5] * (ulong)0x10000000000UL) +
+                ((ulong)bytes[offset + 6] * (ulong)0x1000000000000UL) +
+                ((ulong)bytes[offset + 7] * (ulong)0x100000000000000UL));
+        }
+
+        public static short ReadShortLE(this byte[] bytes, int offset = 0)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
@@ -57,14 +78,135 @@ namespace Rileysoft.DotHack.Extensions
             return (short)value;
         }
 
-        public static IntPtr ReadIntPtr(this byte[] bytes, int offset = 0)
+        public static IntPtr ReadIntPtrLE(this byte[] bytes, int offset = 0)
         {
-            return new IntPtr(ReadInt(bytes, offset));
+            return new IntPtr(ReadIntLE(bytes, offset));
         }
 
-        public static UIntPtr ReadUIntPtr(this byte[] bytes, int offset = 0)
+        public static UIntPtr ReadUIntPtrLE(this byte[] bytes, int offset = 0)
         {
-            return new UIntPtr(ReadUnsignedInt(bytes, offset));
+            return new UIntPtr(ReadUnsignedIntLE(bytes, offset));
+        }
+
+        public static ushort ReadUnsignedShortBE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null) throw new ArgumentNullException(nameof(bytes));
+            return (ushort)(
+                (ushort)bytes[offset + 1] +
+                ((ushort)bytes[offset] * (ushort)0x100));
+        }
+
+        public static uint ReadUnsignedIntBE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null) 
+                throw new ArgumentNullException(nameof(bytes));
+
+            return (uint)(
+                (uint)bytes[offset + 3] +
+                ((uint)bytes[offset + 2] * (uint)0x100) +
+                ((uint)bytes[offset + 1] * (uint)0x10000) +
+                ((uint)bytes[offset] * (uint)0x1000000));
+        }
+
+        public static ulong ReadUnsignedLongBE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null) 
+                throw new ArgumentNullException(nameof(bytes));
+
+            return (ulong)(
+                (ulong)bytes[offset + 7] +
+                ((ulong)bytes[offset + 6] * (ulong)0x100) +
+                ((ulong)bytes[offset + 5] * (ulong)0x10000) +
+                ((ulong)bytes[offset + 4] * (ulong)0x1000000) +
+                ((ulong)bytes[offset + 3] * (ulong)0x100000000) +
+                ((ulong)bytes[offset + 2] * (ulong)0x10000000000) +
+                ((ulong)bytes[offset + 1] * (ulong)0x1000000000000) +
+                ((ulong)bytes[offset] * (ulong)0x100000000000000));
+        }
+
+        public static int ReadIntBE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            uint value =
+                (uint)bytes[offset + 3] +
+                (uint)bytes[offset + 2] * 0x100u +
+                (uint)bytes[offset + 1] * 0x10000u +
+                (uint)bytes[offset] * 0x1000000u;
+
+            if (value > int.MaxValue)
+            {
+                return (int)((long)int.MinValue + (long)((long)value - (long)int.MaxValue - 1));
+            }
+
+            return (int)value;
+        }
+
+        public static long ReadLongBE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            ulong value = ReadUnsignedLongBE(bytes, offset);
+
+            if (value > long.MaxValue)
+            {
+                value -= long.MaxValue;
+                long lvalue = (long)value;
+                lvalue *= -1;
+                lvalue = long.MinValue - lvalue - 1;
+
+                return lvalue;
+            }
+
+            return (long)value;
+        }
+
+        public static long ReadLongLE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            ulong value = ReadUnsignedLongLE(bytes, offset);
+
+            if (value > long.MaxValue)
+            {
+                value -= long.MaxValue;
+                long lvalue = (long)value;
+                lvalue *= -1;
+                lvalue = long.MinValue - lvalue - 1;
+
+                return lvalue;
+            }
+
+            return (long)value;
+        }
+
+        public static short ReadShortBE(this byte[] bytes, int offset = 0)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            ushort value = (ushort)(((ushort)bytes[offset + 1]) + 
+                ((ushort)bytes[offset]) * ((ushort)0x100));
+
+            if (value > short.MaxValue)
+            {
+                return (short)((long)short.MinValue + (long)((long)value - (long)short.MaxValue - 1));
+            }
+
+            return (short)value;
+        }
+
+        public static IntPtr ReadIntPtrBE(this byte[] bytes, int offset = 0)
+        {
+            return new IntPtr(ReadIntBE(bytes, offset));
+        }
+
+        public static UIntPtr ReadUIntPtrBE(this byte[] bytes, int offset = 0)
+        {
+            return new UIntPtr(ReadUnsignedIntBE(bytes, offset));
         }
 
         public static string ToStringHexLE(this byte[] bytes, bool copy=false)
@@ -88,6 +230,30 @@ namespace Rileysoft.DotHack.Extensions
                 Array.Reverse(_bytes);
             }
             
+            return string.Join("", bytes.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
+        }
+
+        public static string ToStringHexBE(this byte[] bytes, bool copy = false)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            byte[] _bytes = bytes;
+
+            if (BitConverter.IsLittleEndian)
+            {
+                if (copy)
+                {
+                    _bytes = new byte[bytes.Length];
+                    for (int i = 0; i < bytes.Length; i++)
+                    {
+                        _bytes[i] = bytes[i];
+                    }
+                }
+
+                Array.Reverse(_bytes);
+            }
+
             return string.Join("", bytes.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
         }
 

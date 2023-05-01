@@ -2,7 +2,7 @@
 {
     public static class StreamExtensions
     {
-        public static uint ReadUnsignedInt (this Stream stream)
+        public static uint ReadUnsignedIntLE (this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
@@ -13,10 +13,10 @@
             if (bytesRead < 4)
                 throw new EndOfStreamException("end of stream");
 
-            return bytes.ReadUnsignedInt();
+            return bytes.ReadUnsignedIntLE();
         }
 
-        public static ushort ReadUnsignedShort (this Stream stream)
+        public static ushort ReadUnsignedShortLE (this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
@@ -27,10 +27,10 @@
             if (bytesRead < 2)
                 throw new EndOfStreamException("end of stream");
 
-            return bytes.ReadUnsignedShort();
+            return bytes.ReadUnsignedShortLE();
         }
 
-        public static int ReadInt (this Stream stream)
+        public static int ReadIntLE (this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
@@ -41,10 +41,11 @@
             if (bytesRead < 4)
                 throw new EndOfStreamException("end of stream");
 
-            return bytes.ReadInt();
+            return bytes.ReadIntLE();
         }
 
-        public static short ReadShort(this Stream stream)
+
+        public static short ReadShortLE(this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
@@ -55,17 +56,113 @@
             if (bytesRead < 2)
                 throw new EndOfStreamException("end of stream");
 
-            return bytes.ReadShort();
+            return bytes.ReadShortLE();
         }
 
-        public static IntPtr ReadIntPtr(this Stream stream)
+        public static IntPtr ReadIntPtrLE(this Stream stream)
         {
-            return new IntPtr(ReadInt(stream));
+            return new IntPtr(ReadIntLE(stream));
         }
 
-        public static UIntPtr ReadUIntPtr(this Stream stream)
+        public static UIntPtr ReadUIntPtrLE(this Stream stream)
         {
-            return new UIntPtr(ReadUnsignedInt(stream));
+            return new UIntPtr(ReadUnsignedIntLE(stream));
+        }
+
+        public static uint ReadUnsignedIntBE(this Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            byte[] bytes = new byte[4];
+            int bytesRead = stream.Read(bytes, 0, 4);
+
+            if (bytesRead < 4)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadUnsignedIntBE();
+        }
+
+        public static ulong ReadUnsignedLongBE(this Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            byte[] bytes = new byte[8];
+            int bytesRead = stream.Read(bytes, 0, 8);
+
+            if (bytesRead < 8)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadUnsignedLongBE();
+        }
+
+        public static ulong ReadUnsignedLongLE(this Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            byte[] bytes = new byte[8];
+            int bytesRead = stream.Read(bytes, 0, 8);
+
+            if (bytesRead < 8)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadUnsignedLongLE();
+        }
+
+
+
+        public static ushort ReadUnsignedShortBE(this Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            byte[] bytes = new byte[2];
+            int bytesRead = stream.Read(bytes, 0, 2);
+
+            if (bytesRead < 2)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadUnsignedShortBE();
+        }
+
+        public static int ReadIntBE(this Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            byte[] bytes = new byte[4];
+            int bytesRead = stream.Read(bytes, 0, 4);
+
+            if (bytesRead < 4)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadIntBE();
+        }
+
+        public static short ReadShortBE(this Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            byte[] bytes = new byte[2];
+            int bytesRead = stream.Read(bytes, 0, 2);
+
+            if (bytesRead < 2)
+                throw new EndOfStreamException("end of stream");
+
+            return bytes.ReadShortBE();
+        }
+
+        public static IntPtr ReadIntPtrBE(this Stream stream)
+        {
+            return new IntPtr(ReadIntBE(stream));
+        }
+
+        public static UIntPtr ReadUIntPtrBE(this Stream stream)
+        {
+            return new UIntPtr(ReadUnsignedIntBE(stream));
         }
 
         public static string ReadCString(this Stream stream)
