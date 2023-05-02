@@ -1,16 +1,5 @@
 ﻿using Rileysoft.DotHack.Extensions;
-using Rileysoft.DotHack.SLUS20267;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Rileysoft.DotHack.FileFormats.ELF
 {
@@ -950,6 +939,26 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         public void ReadFromStream (Stream stream)
         {
             Ehdr.ReadFromStream(stream);
+
+            if (Ehdr.e_ident == null)
+                throw new InvalidOperationException();
+
+            switch (Ehdr.e_ident.EI_CLASS)
+            {
+                case ELFCLASS.ELFCLASS32:
+                    Phdr32 = new Elf32_Phdr();
+                    Phdr32.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                    break;
+                case ELFCLASS.ELFCLASS64:
+                    Phdr64 = new Elf64_Phdr();
+                    Phdr64.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                    break;
+                case ELFCLASS.ELFCLASSNONE:
+                default:
+                    throw new InvalidOperationException();
+            }
+
+
         }
     }
 }
