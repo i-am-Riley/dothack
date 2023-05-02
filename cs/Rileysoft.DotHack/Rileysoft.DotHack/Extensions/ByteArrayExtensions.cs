@@ -279,5 +279,50 @@ namespace Rileysoft.DotHack.Extensions
 
             return sb.ToString();
         }
+
+        public static List<string> ReadCStrings (this byte[] bytes)
+        {
+            List<string> strings = new List<string>();
+            using (MemoryStream ms = new MemoryStream(bytes))
+            {
+                while (ms.Position < ms.Length)
+                {
+                    strings.Add(ms.ReadCString());
+                }
+            }
+
+            return strings;
+        }
+
+        public static string ReadCString (this byte[] bytes, long offset = 0)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            char[] charBuf = new char[1];
+            int len = 0;
+
+            while (offset+len < bytes.Length)
+            {
+                byte b = bytes[offset + len];
+
+                if (b == 0)
+                    break;
+
+                if (len == charBuf.Length)
+                {
+                    char[] cloneBuf = new char[charBuf.Length * 2];
+                    for (int i = 0; i < len; i++)
+                    {
+                        cloneBuf[i] = charBuf[i];
+                    }
+                    charBuf = cloneBuf;
+                }
+
+                charBuf[len++] = Convert.ToChar(b);
+            }
+
+            return new string(charBuf, 0, len);
+        }
     }
 }

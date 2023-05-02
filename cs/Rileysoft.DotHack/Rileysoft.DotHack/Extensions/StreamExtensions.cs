@@ -165,6 +165,21 @@
             return new UIntPtr(ReadUnsignedIntBE(stream));
         }
 
+        public static List<string> ReadCStrings(this Stream stream, long offset, long length)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            if (!stream.CanSeek)
+                throw new ArgumentException("cannot seek");
+
+            byte[] buffer = new byte[length];
+            stream.Seek(offset, SeekOrigin.Begin);
+            stream.Read(buffer, 0, (int)length);
+
+            return buffer.ReadCStrings();
+        }
+
         public static string ReadCString(this Stream stream)
         {
             if (stream == null)
@@ -174,7 +189,7 @@
             byte[] readBuf = new byte[1];
             int len = 0;
 
-            while (stream.Read(readBuf, 0, 1) == 1)
+            while (stream.Position < stream.Length && stream.Read(readBuf, 0, 1) == 1)
             {
                 if (readBuf[0] == 0)
                     break;

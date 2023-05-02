@@ -861,11 +861,357 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         }
     }
 
+    public enum SHDRTYPE
+    {
+        /// <summary>
+        /// This value marks the section header as inactive.
+        /// It does not have an associated section.  Other
+        /// members of the section header have undefined
+        /// values.
+        /// </summary>
+        SHT_NULL,
+
+        /// <summary>
+        /// This section holds information defined by the
+        /// program, whose format and meaning are determined
+        /// solely by the program.
+        /// </summary>
+        SHT_PROGBITS,
+
+        /// <summary>
+        /// This section holds a symbol table.  Typically,
+        /// SHT_SYMTAB provides symbols for link editing,
+        /// though it may also be used for dynamic linking.  As
+        /// a complete symbol table, it may contain many
+        /// symbols unnecessary for dynamic linking.  An object
+        /// file can also contain a SHT_DYNSYM section.
+        /// </summary>
+        SHT_SYMTAB,
+
+        /// <summary>
+        /// This section holds a string table.  An object file
+        /// may have multiple string table sections.
+        /// </summary>
+        SHT_STRTAB,
+
+        /// <summary>
+        /// This section holds relocation entries with explicit
+        /// addends, such as type Elf32_Rela for the 32-bit
+        /// class of object files.  An object may have multiple
+        /// relocation sections.
+        /// </summary>
+        SHT_RELA,
+
+        /// <summary>
+        /// This section holds a symbol hash table.  An object
+        /// participating in dynamic linking must contain a
+        /// symbol hash table.  An object file may have only
+        /// one hash table.
+        /// </summary>
+        SHT_HASH,
+
+        /// <summary>
+        /// This section holds information for dynamic linking.
+        /// An object file may have only one dynamic section.
+        /// </summary>
+        SHT_DYNAMIC,
+
+        /// <summary>
+        /// This section holds notes (ElfN_Nhdr).
+        /// </summary>
+        SHT_NOTE,
+
+        /// <summary>
+        /// A section of this type occupies no space in the
+        /// file but otherwise resembles SHT_PROGBITS.
+        /// Although this section contains no bytes, the
+        /// sh_offset member contains the conceptual file
+        /// offset.
+        /// </summary>
+        SHT_NOBITS,
+
+        /// <summary>
+        /// This section holds relocation offsets without
+        /// explicit addends, such as type Elf32_Rel for the
+        /// 32-bit class of object files.  An object file may
+        /// have multiple relocation sections.
+        /// </summary>
+        SHT_REL,
+
+        /// <summary>
+        /// This section is reserved but has unspecified
+        /// semantics.
+        /// </summary>
+        SHT_SHLIB,
+        
+        /// <summary>
+        /// This section holds a minimal set of dynamic linking
+        /// symbols.  An object file can also contain a
+        /// SHT_SYMTAB section.
+        /// </summary>
+        SHT_DYNSYM,
+
+        /// <summary>
+        /// Values in the inclusive range [SHT_LOPROC,
+        /// SHT_HIPROC] are reserved for processor-specific
+        /// semantics.
+        /// </summary>
+        SHT_LOPROC,
+
+        /// <summary>
+        /// Values in the inclusive range [SHT_LOPROC,
+        /// SHT_HIPROC] are reserved for processor-specific
+        /// semantics.
+        /// </summary>
+        SHT_HIPROC,
+
+        /// <summary>
+        /// This value specifies the lower bound of the range
+        /// of indices reserved for application programs.
+        /// </summary>
+        SHT_LOUSER,
+
+        /// <summary>
+        /// This value specifies the upper bound of the range
+        /// of indices reserved for application programs.
+        /// Section types between SHT_LOUSER and SHT_HIUSER may
+        /// be used by the application, without conflicting
+        /// with current or future system-defined section
+        /// types.
+        /// </summary>
+        SHT_HIUSER
+    }
+
+    public class Elf32_Shdr
+    {
+        /// <summary>
+        /// This member specifies the name of the section.  Its value
+        /// is an index into the section header string table section,
+        /// giving the location of a null-terminated string.
+        /// </summary>
+        public uint sh_name { get; set; }
+
+        /// <summary>
+        /// This member categorizes the section's contents and
+        /// semantics.
+        /// </summary>
+        public uint sh_type { get; set; }
+
+        /// <summary>
+        /// Sections support one-bit flags that describe miscellaneous
+        /// attributes.  If a flag bit is set in sh_flags, the
+        /// attribute is "on" for the section.  Otherwise, the
+        /// attribute is "off" or does not apply.  Undefined
+        /// attributes are set to zero.
+        /// </summary>
+        public uint sh_flags { get; set; }
+
+        /// <summary>
+        /// If this section appears in the memory image of a process,
+        /// this member holds the address at which the section's first
+        /// byte should reside.  Otherwise, the member contains zero.
+        /// </summary>
+        public uint sh_addr { get; set; }
+
+        /// <summary>
+        /// This member's value holds the byte offset from the
+        /// beginning of the file to the first byte in the section.
+        /// One section type, SHT_NOBITS, occupies no space in the
+        /// file, and its sh_offset member locates the conceptual
+        /// placement in the file.
+        /// </summary>
+        public uint sh_offset { get; set; }
+
+        /// <summary>
+        /// This member holds the section's size in bytes.  Unless the
+        /// section type is SHT_NOBITS, the section occupies sh_size
+        /// bytes in the file.  A section of type SHT_NOBITS may have
+        /// a nonzero size, but it occupies no space in the file.
+        /// </summary>
+        public uint sh_size { get; set; }
+
+        /// <summary>
+        /// This member holds a section header table index link, whose
+        /// interpretation depends on the section type.
+        /// </summary>
+        public uint sh_link { get; set; }
+
+        /// <summary>
+        /// This member holds extra information, whose interpretation
+        /// depends on the section type.
+        /// </summary>
+        public uint sh_info { get; set; }
+
+        /// <summary>
+        /// Some sections have address alignment constraints.  If a
+        /// section holds a doubleword, the system must ensure
+        /// doubleword alignment for the entire section.  That is, the
+        /// value of sh_addr must be congruent to zero, modulo the
+        /// value of sh_addralign.  Only zero and positive integral
+        /// powers of two are allowed.  The value 0 or 1 means that
+        /// the section has no alignment constraints.
+        /// </summary>
+        public uint sh_addralign { get; set; }
+
+        /// <summary>
+        /// Some sections hold a table of fixed-sized entries, such as
+        /// a symbol table.  For such a section, this member gives the
+        /// size in bytes for each entry.  This member contains zero
+        /// if the section does not hold a table of fixed-size
+        /// entries.
+        /// </summary>
+        public uint sh_entsize { get; set; }
+
+        public void ReadFromStream (Stream stream, bool bigEndian)
+        {
+            if (bigEndian)
+            {
+                sh_name = stream.ReadUnsignedIntBE();
+                sh_type = stream.ReadUnsignedIntBE();
+                sh_flags = stream.ReadUnsignedIntBE();
+                sh_addr = stream.ReadUnsignedIntBE();
+                sh_offset = stream.ReadUnsignedIntBE();
+                sh_size = stream.ReadUnsignedIntBE();
+                sh_link = stream.ReadUnsignedIntBE();
+                sh_info = stream.ReadUnsignedIntBE();
+                sh_addralign = stream.ReadUnsignedIntBE();
+                sh_entsize = stream.ReadUnsignedIntBE();
+            }
+            else
+            {
+                sh_name = stream.ReadUnsignedIntLE();
+                sh_type = stream.ReadUnsignedIntLE();
+                sh_flags = stream.ReadUnsignedIntLE();
+                sh_addr = stream.ReadUnsignedIntLE();
+                sh_offset = stream.ReadUnsignedIntLE();
+                sh_size = stream.ReadUnsignedIntLE();
+                sh_link = stream.ReadUnsignedIntLE();
+                sh_info = stream.ReadUnsignedIntLE();
+                sh_addralign = stream.ReadUnsignedIntLE();
+                sh_entsize = stream.ReadUnsignedIntLE();
+            }
+        }
+    }
+
+    public class Elf64_Shdr
+    {
+        /// <summary>
+        /// This member specifies the name of the section.  Its value
+        /// is an index into the section header string table section,
+        /// giving the location of a null-terminated string.
+        /// </summary>
+        public uint sh_name { get; set; }
+
+        /// <summary>
+        /// This member categorizes the section's contents and
+        /// semantics.
+        /// </summary>
+        public uint sh_type { get; set; }
+
+        /// <summary>
+        /// Sections support one-bit flags that describe miscellaneous
+        /// attributes.  If a flag bit is set in sh_flags, the
+        /// attribute is "on" for the section.  Otherwise, the
+        /// attribute is "off" or does not apply.  Undefined
+        /// attributes are set to zero.
+        /// </summary>
+        public ulong sh_flags { get; set; }
+
+        /// <summary>
+        /// If this section appears in the memory image of a process,
+        /// this member holds the address at which the section's first
+        /// byte should reside.  Otherwise, the member contains zero.
+        /// </summary>
+        public ulong sh_addr { get; set; }
+
+        /// <summary>
+        /// This member's value holds the byte offset from the
+        /// beginning of the file to the first byte in the section.
+        /// One section type, SHT_NOBITS, occupies no space in the
+        /// file, and its sh_offset member locates the conceptual
+        /// placement in the file.
+        /// </summary>
+        public ulong sh_offset { get; set; }
+
+        /// <summary>
+        /// This member holds the section's size in bytes.  Unless the
+        /// section type is SHT_NOBITS, the section occupies sh_size
+        /// bytes in the file.  A section of type SHT_NOBITS may have
+        /// a nonzero size, but it occupies no space in the file.
+        /// </summary>
+        public ulong sh_size { get; set; }
+
+        /// <summary>
+        /// This member holds a section header table index link, whose
+        /// interpretation depends on the section type.
+        /// </summary>
+        public uint sh_link { get; set; }
+
+        /// <summary>
+        /// This member holds extra information, whose interpretation
+        /// depends on the section type.
+        /// </summary>
+        public uint sh_info { get; set; }
+
+        /// <summary>
+        /// Some sections have address alignment constraints.  If a
+        /// section holds a doubleword, the system must ensure
+        /// doubleword alignment for the entire section.  That is, the
+        /// value of sh_addr must be congruent to zero, modulo the
+        /// value of sh_addralign.  Only zero and positive integral
+        /// powers of two are allowed.  The value 0 or 1 means that
+        /// the section has no alignment constraints.
+        /// </summary>
+        public ulong sh_addralign { get; set; }
+
+        /// <summary>
+        /// Some sections hold a table of fixed-sized entries, such as
+        /// a symbol table.  For such a section, this member gives the
+        /// size in bytes for each entry.  This member contains zero
+        /// if the section does not hold a table of fixed-size
+        /// entries.
+        /// </summary>
+        public ulong sh_entsize { get; set; }
+
+        public void ReadFromStream(Stream stream, bool bigEndian)
+        {
+            if (bigEndian)
+            {
+                sh_name = stream.ReadUnsignedIntBE();
+                sh_type = stream.ReadUnsignedIntBE();
+                sh_flags = stream.ReadUnsignedLongBE();
+                sh_addr = stream.ReadUnsignedLongBE();
+                sh_offset = stream.ReadUnsignedLongBE();
+                sh_size = stream.ReadUnsignedLongBE();
+                sh_link = stream.ReadUnsignedIntBE();
+                sh_info = stream.ReadUnsignedIntBE();
+                sh_addralign = stream.ReadUnsignedLongBE();
+                sh_entsize = stream.ReadUnsignedLongBE();
+            }
+            else
+            {
+                sh_name = stream.ReadUnsignedIntLE();
+                sh_type = stream.ReadUnsignedIntLE();
+                sh_flags = stream.ReadUnsignedLongLE();
+                sh_addr = stream.ReadUnsignedLongLE();
+                sh_offset = stream.ReadUnsignedLongLE();
+                sh_size = stream.ReadUnsignedLongLE();
+                sh_link = stream.ReadUnsignedIntLE();
+                sh_info = stream.ReadUnsignedIntLE();
+                sh_addralign = stream.ReadUnsignedLongLE();
+                sh_entsize = stream.ReadUnsignedLongLE();
+            }
+        }
+    }
+
     public class ElfData
     {
         public ElfHeader Ehdr { get; set; } = new ElfHeader();
-        public Elf32_Phdr? Phdr32 { get; set; }
-        public Elf64_Phdr? Phdr64 { get; set; }
+        public List<Elf32_Phdr>? Phdr32s { get; set; }
+        public List<Elf64_Phdr>? Phdr64s { get; set; }
+        public List<Elf32_Shdr>? Shdr32s { get; set; }
+        public List<Elf64_Shdr>? Shdr64s { get; set; }
+        public byte[] Shstrs { get; set; }
 
         private ushort ReadUShort(Stream stream)
         {
@@ -938,27 +1284,85 @@ namespace Rileysoft.DotHack.FileFormats.ELF
 
         public void ReadFromStream (Stream stream)
         {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            if (!stream.CanSeek)
+                throw new ArgumentException("cannot seek");
+
             Ehdr.ReadFromStream(stream);
 
             if (Ehdr.e_ident == null)
                 throw new InvalidOperationException();
 
+            stream.Seek((long)Ehdr.e_phoff, SeekOrigin.Begin);
+
             switch (Ehdr.e_ident.EI_CLASS)
             {
                 case ELFCLASS.ELFCLASS32:
-                    Phdr32 = new Elf32_Phdr();
-                    Phdr32.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                    Phdr32s = new List<Elf32_Phdr>();
+                    for (int i=0; i< Ehdr.e_phnum; i++)
+                    {
+                        var Phdr32 = new Elf32_Phdr();
+                        Phdr32.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                        Phdr32s.Add(Phdr32);
+                    }
+                    
+                    Shdr32s = new List<Elf32_Shdr>();
+                    stream.Seek((long)Ehdr.e_shoff, SeekOrigin.Begin);
+                    for (int i = 0; i < Ehdr.e_shnum; i++)
+                    {
+                        var Shdr32 = new Elf32_Shdr();
+                        Shdr32.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                        Shdr32s.Add(Shdr32);
+
+                        if (i == Ehdr.e_shstrndx)
+                        {
+                            long return_pos = stream.Position;
+                            //Shstrs.AddRange(stream.ReadCStrings(Shdr32.sh_offset, Shdr32.sh_size));
+                            stream.Seek(Shdr32.sh_offset, SeekOrigin.Begin);
+                            Shstrs = new byte[Shdr32.sh_size];
+                            stream.Read(Shstrs, 0, (int)Shdr32.sh_size);
+                            stream.Seek(return_pos, SeekOrigin.Begin);
+                        }
+                    }
+
                     break;
                 case ELFCLASS.ELFCLASS64:
-                    Phdr64 = new Elf64_Phdr();
-                    Phdr64.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                    Phdr64s = new List<Elf64_Phdr>();
+                    for (int i=0; i < Ehdr.e_phnum; i++)
+                    {
+                        var Phdr64 = new Elf64_Phdr();
+                        Phdr64.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                        Phdr64s.Add(Phdr64);
+                    }
+
+                    Shdr64s = new List<Elf64_Shdr>();
+                    stream.Seek((long)Ehdr.e_shoff, SeekOrigin.Begin);
+                    for (int i=0; i<Ehdr.e_shnum; i++)
+                    {
+                        var Shdr64 = new Elf64_Shdr();
+                        Shdr64.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                        Shdr64s.Add(Shdr64);
+
+                        if (i == Ehdr.e_shstrndx)
+                        {
+                            long return_pos = stream.Position;
+                            //Shstrs.AddRange(stream.ReadCStrings(Shdr32.sh_offset, Shdr32.sh_size));
+                            stream.Seek((long)Shdr64.sh_offset, SeekOrigin.Begin);
+                            Shstrs = new byte[Shdr64.sh_size];
+                            stream.Read(Shstrs, 0, (int)Shdr64.sh_size);
+                            stream.Seek(return_pos, SeekOrigin.Begin);
+                        }
+                    }
+
                     break;
                 case ELFCLASS.ELFCLASSNONE:
                 default:
                     throw new InvalidOperationException();
             }
 
-
+            
         }
     }
 }
