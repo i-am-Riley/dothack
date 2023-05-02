@@ -71,6 +71,10 @@ while (true)
             Console.WriteLine($" p_align: {elfData.Phdr64.p_align:X16}");
         }
 
+        // p_offset is the start of the MIPS assembly
+        // p_offset + p_filesz will get you to section names
+        // e_shoff will get you to the section headers
+        // first section header is null
     }
     catch (Exception e)
     {
