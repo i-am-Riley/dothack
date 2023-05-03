@@ -135,6 +135,12 @@ while (true)
         // p_offset + p_filesz will get you to section names
         // e_shoff will get you to the section headers
         // first section header is null
+
+        // .mwcats stands for MetroWerks CodeWarrior Analysis Tools Suite (CATS)
+        // See: https://www.nxp.com/docs/en/data-sheet/950-00109.pdf
+
+        // DWARF version 2 wasn't used since .debug_info headers are missing
+        // .debug contains a lot of the info.
     }
     catch (Exception e)
     {
