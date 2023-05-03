@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Rileysoft.DotHack.Extensions;
 using Rileysoft.DotHack.FileFormats.ELF;
+using Rileysoft.DotHack.Metrowerks.MipsCCompiler;
 using System.Linq;
 
 Console.WriteLine("ElfInfo");
@@ -18,10 +19,53 @@ while (true)
         }
 
         ElfData elfData = new ElfData();
+        string comment = "";
+        ElfDebug? elfDebug = null;
+
         using (FileStream fs = File.OpenRead(path))
         {
 
             elfData.ReadFromStream(fs);
+
+            switch (elfData.Ehdr.e_ident.EI_CLASS)
+            {
+                case ELFCLASS.ELFCLASS32:
+                    if (elfData.Shdr32s != null)
+                    {
+                        var commentSections = elfData.Shdr32s.Where(x => x.Name == ".comment");
+                        if (commentSections.Any())
+                        {
+                            foreach (var commentSection in commentSections)
+                            {
+                                fs.Seek(commentSection.sh_offset, SeekOrigin.Begin);
+                                comment += fs.ReadCString();
+                            }
+                        }
+
+                        elfDebug = new ElfDebug(elfData, fs);
+                    }
+                    break;
+                case ELFCLASS.ELFCLASS64:
+                    if (elfData.Shdr64s != null)
+                    {
+                        var commentSections = elfData.Shdr64s.Where(x => x.Name == ".comment");
+                        if (commentSections.Any())
+                        {
+                            foreach (var commentSection in commentSections)
+                            {
+                                fs.Seek((long)commentSection.sh_offset, SeekOrigin.Begin);
+                                comment += fs.ReadCString();
+                            }
+                        }
+
+                        elfDebug = new ElfDebug(elfData, fs);
+                    }
+                    break;
+                case ELFCLASS.ELFCLASSNONE:
+                default:
+                    Console.WriteLine("invalid");
+                    break;
+            }
         }
 
         Console.WriteLine("Ehdr e_ident");
@@ -91,7 +135,7 @@ while (true)
             {
                 string name = "unknown";
                 var shdr32 = elfData.Shdr32s[i];
-                name = elfData.Shstrs.ReadCString(shdr32.sh_name);
+                name = shdr32.Name;
 
                 if (name.Length == 0)
                     name = "<null>";
@@ -116,7 +160,10 @@ while (true)
             {
                 string name = "unknown";
                 var shdr64 = elfData.Shdr64s[i];
-                name = elfData.Shstrs.ReadCString(shdr64.sh_name);
+                name = shdr64.Name;
+
+                if (name.Length == 0)
+                    name = "<null>";
 
                 Console.WriteLine($"[{i}] Shdr64 ({name})");
                 Console.WriteLine($" sh_name: {shdr64.sh_name:X8}");
@@ -141,6 +188,13 @@ while (true)
 
         // DWARF version 2 wasn't used since .debug_info headers are missing
         // .debug contains a lot of the info.
+
+        if (comment.Length > 0)
+        {
+            Console.WriteLine("");
+            Console.WriteLine($"Comment: {comment}");
+        }
+        
     }
     catch (Exception e)
     {

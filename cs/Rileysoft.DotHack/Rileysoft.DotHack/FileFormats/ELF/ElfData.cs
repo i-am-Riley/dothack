@@ -984,12 +984,16 @@ namespace Rileysoft.DotHack.FileFormats.ELF
 
     public class Elf32_Shdr
     {
+        public ElfData Parent { get; set; }
+
         /// <summary>
         /// This member specifies the name of the section.  Its value
         /// is an index into the section header string table section,
         /// giving the location of a null-terminated string.
         /// </summary>
         public uint sh_name { get; set; }
+
+        public string Name { get; set; }
 
         /// <summary>
         /// This member categorizes the section's contents and
@@ -1095,12 +1099,16 @@ namespace Rileysoft.DotHack.FileFormats.ELF
 
     public class Elf64_Shdr
     {
+        public ElfData Parent;
+
         /// <summary>
         /// This member specifies the name of the section.  Its value
         /// is an index into the section header string table section,
         /// giving the location of a null-terminated string.
         /// </summary>
         public uint sh_name { get; set; }
+
+        public string Name { get; set; } = "";
 
         /// <summary>
         /// This member categorizes the section's contents and
@@ -1314,17 +1322,23 @@ namespace Rileysoft.DotHack.FileFormats.ELF
                     {
                         var Shdr32 = new Elf32_Shdr();
                         Shdr32.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
+                        Shdr32.Parent = this;
                         Shdr32s.Add(Shdr32);
+
 
                         if (i == Ehdr.e_shstrndx)
                         {
                             long return_pos = stream.Position;
-                            //Shstrs.AddRange(stream.ReadCStrings(Shdr32.sh_offset, Shdr32.sh_size));
                             stream.Seek(Shdr32.sh_offset, SeekOrigin.Begin);
                             Shstrs = new byte[Shdr32.sh_size];
                             stream.Read(Shstrs, 0, (int)Shdr32.sh_size);
                             stream.Seek(return_pos, SeekOrigin.Begin);
                         }
+                    }
+
+                    foreach (var Shdr32 in Shdr32s)
+                    {
+                        Shdr32.Name = Shstrs.ReadCString(Shdr32.sh_name);
                     }
 
                     break;
@@ -1342,18 +1356,23 @@ namespace Rileysoft.DotHack.FileFormats.ELF
                     for (int i=0; i<Ehdr.e_shnum; i++)
                     {
                         var Shdr64 = new Elf64_Shdr();
+                        Shdr64.Parent = this;
                         Shdr64.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
                         Shdr64s.Add(Shdr64);
 
                         if (i == Ehdr.e_shstrndx)
                         {
                             long return_pos = stream.Position;
-                            //Shstrs.AddRange(stream.ReadCStrings(Shdr32.sh_offset, Shdr32.sh_size));
                             stream.Seek((long)Shdr64.sh_offset, SeekOrigin.Begin);
                             Shstrs = new byte[Shdr64.sh_size];
                             stream.Read(Shstrs, 0, (int)Shdr64.sh_size);
                             stream.Seek(return_pos, SeekOrigin.Begin);
                         }
+                    }
+
+                    foreach (var Shdr64 in Shdr64s)
+                    {
+                        Shdr64.Name = Shstrs.ReadCString(Shdr64.sh_name);
                     }
 
                     break;
