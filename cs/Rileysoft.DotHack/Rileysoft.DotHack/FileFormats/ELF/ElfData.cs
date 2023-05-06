@@ -1220,6 +1220,7 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         public List<Elf32_Shdr>? Shdr32s { get; set; }
         public List<Elf64_Shdr>? Shdr64s { get; set; }
         public byte[] Shstrs { get; set; }
+        public List<string> Strtbl { get; set; }
 
         private ushort ReadUShort(Stream stream)
         {
@@ -1341,6 +1342,21 @@ namespace Rileysoft.DotHack.FileFormats.ELF
                         Shdr32.Name = Shstrs.ReadCString(Shdr32.sh_name);
                     }
 
+                    Strtbl = new List<string>();
+
+                    foreach (var Shdr in Shdr32s)
+                    {
+                        if (Shdr.Name == ".strtab")
+                        {
+                            stream.Seek(Shdr.sh_offset, SeekOrigin.Begin);
+                            while (stream.Position < stream.Length &&
+                                stream.Position < Shdr.sh_offset+Shdr.sh_size)
+                            {
+                                Strtbl.Add(stream.ReadCString());
+                            }
+                        }
+                    }
+
                     break;
                 case ELFCLASS.ELFCLASS64:
                     Phdr64s = new List<Elf64_Phdr>();
@@ -1373,6 +1389,21 @@ namespace Rileysoft.DotHack.FileFormats.ELF
                     foreach (var Shdr64 in Shdr64s)
                     {
                         Shdr64.Name = Shstrs.ReadCString(Shdr64.sh_name);
+                    }
+
+                    Strtbl = new List<string>();
+
+                    foreach (var Shdr in Shdr64s)
+                    {
+                        if (Shdr.Name == ".strtab")
+                        {
+                            stream.Seek((long)Shdr.sh_offset, SeekOrigin.Begin);
+                            while (stream.Position < stream.Length &&
+                                stream.Position < (long)Shdr.sh_offset + (long)Shdr.sh_size)
+                            {
+                                Strtbl.Add(stream.ReadCString());
+                            }
+                        }
                     }
 
                     break;

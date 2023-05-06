@@ -189,12 +189,19 @@ while (true)
         // DWARF version 2 wasn't used since .debug_info headers are missing
         // .debug contains a lot of the info.
 
+        // there might be DWARF usage in the demo discs. there is a header
+        // .mdebug.eabi64 that ChatGPT suggests is DWARF.
+
         if (comment.Length > 0)
         {
             Console.WriteLine("");
             Console.WriteLine($"Comment: {comment}");
         }
         
+        foreach (string str in elfData.Strtbl)
+        {
+            Console.WriteLine(str);
+        }
     }
     catch (Exception e)
     {
