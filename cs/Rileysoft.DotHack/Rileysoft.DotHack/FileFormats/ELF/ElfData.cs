@@ -2,6 +2,7 @@
 using System.Diagnostics;
 
 #pragma warning disable CA1707
+#pragma warning disable IDE1006
 
 namespace Rileysoft.DotHack.FileFormats.ELF
 {
@@ -1395,4 +1396,5 @@ namespace Rileysoft.DotHack.FileFormats.ELF
     }
 }
 
+#pragma warning restore IDE1006
 #pragma warning restore CA1707
