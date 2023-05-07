@@ -483,16 +483,12 @@ namespace Rileysoft.DotHack.FileFormats.ELF
             if (e_ident == null)
                 throw new InvalidOperationException();
 
-            switch (e_ident.EI_DATA)
+            return e_ident.EI_DATA switch
             {
-                case ELFDATA.ELFDATA2LSB:
-                    return stream.ReadUnsignedShortLE();
-                case ELFDATA.ELFDATA2MSB:
-                    return stream.ReadUnsignedShortBE();
-                case ELFDATA.ELFDATANONE:
-                default:
-                    throw new InvalidOperationException();
-            }
+                ELFDATA.ELFDATA2LSB => stream.ReadUnsignedShortLE(),
+                ELFDATA.ELFDATA2MSB => stream.ReadUnsignedShortBE(),
+                _ => throw new InvalidOperationException(),
+            };
         }
 
         private uint ReadUInt(Stream stream)
@@ -503,16 +499,12 @@ namespace Rileysoft.DotHack.FileFormats.ELF
             if (e_ident == null)
                 throw new InvalidOperationException();
 
-            switch (e_ident.EI_DATA)
+            return e_ident.EI_DATA switch
             {
-                case ELFDATA.ELFDATA2LSB:
-                    return stream.ReadUnsignedIntLE();
-                case ELFDATA.ELFDATA2MSB:
-                    return stream.ReadUnsignedIntBE();
-                case ELFDATA.ELFDATANONE:
-                default:
-                    throw new InvalidOperationException();
-            }
+                ELFDATA.ELFDATA2LSB => stream.ReadUnsignedIntLE(),
+                ELFDATA.ELFDATA2MSB => stream.ReadUnsignedIntBE(),
+                _ => throw new InvalidOperationException(),
+            };
         }
 
         private ulong ReadULong(Stream stream)
@@ -523,16 +515,12 @@ namespace Rileysoft.DotHack.FileFormats.ELF
             if (e_ident == null)
                 throw new InvalidOperationException();
 
-            switch (e_ident.EI_DATA)
+            return e_ident.EI_DATA switch
             {
-                case ELFDATA.ELFDATA2LSB:
-                    return stream.ReadUnsignedLongLE();
-                case ELFDATA.ELFDATA2MSB:
-                    return stream.ReadUnsignedLongBE();
-                case ELFDATA.ELFDATANONE:
-                default:
-                    throw new InvalidOperationException();
-            }
+                ELFDATA.ELFDATA2LSB => stream.ReadUnsignedLongLE(),
+                ELFDATA.ELFDATA2MSB => stream.ReadUnsignedLongBE(),
+                _ => throw new InvalidOperationException(),
+            };
         }
 
         public void ReadFromStream(Stream stream)
@@ -1235,16 +1223,12 @@ namespace Rileysoft.DotHack.FileFormats.ELF
             if (Ehdr.e_ident == null)
                 throw new InvalidOperationException();
 
-            switch (Ehdr.e_ident.EI_DATA)
+            return Ehdr.e_ident.EI_DATA switch
             {
-                case ELFDATA.ELFDATA2LSB:
-                    return stream.ReadUnsignedShortLE();
-                case ELFDATA.ELFDATA2MSB:
-                    return stream.ReadUnsignedShortBE();
-                case ELFDATA.ELFDATANONE:
-                default:
-                    throw new InvalidOperationException();
-            }
+                ELFDATA.ELFDATA2LSB => stream.ReadUnsignedShortLE(),
+                ELFDATA.ELFDATA2MSB => stream.ReadUnsignedShortBE(),
+                _ => throw new InvalidOperationException(),
+            };
         }
 
         private uint ReadUInt(Stream stream)
@@ -1258,16 +1242,12 @@ namespace Rileysoft.DotHack.FileFormats.ELF
             if (Ehdr.e_ident == null)
                 throw new InvalidOperationException();
 
-            switch (Ehdr.e_ident.EI_DATA)
+            return Ehdr.e_ident.EI_DATA switch
             {
-                case ELFDATA.ELFDATA2LSB:
-                    return stream.ReadUnsignedIntLE();
-                case ELFDATA.ELFDATA2MSB:
-                    return stream.ReadUnsignedIntBE();
-                case ELFDATA.ELFDATANONE:
-                default:
-                    throw new InvalidOperationException();
-            }
+                ELFDATA.ELFDATA2LSB => stream.ReadUnsignedIntLE(),
+                ELFDATA.ELFDATA2MSB => stream.ReadUnsignedIntBE(),
+                _ => throw new InvalidOperationException(),
+            };
         }
 
         private ulong ReadULong(Stream stream)
@@ -1281,16 +1261,12 @@ namespace Rileysoft.DotHack.FileFormats.ELF
             if (Ehdr.e_ident == null)
                 throw new InvalidOperationException();
 
-            switch (Ehdr.e_ident.EI_DATA)
+            return Ehdr.e_ident.EI_DATA switch
             {
-                case ELFDATA.ELFDATA2LSB:
-                    return stream.ReadUnsignedLongLE();
-                case ELFDATA.ELFDATA2MSB:
-                    return stream.ReadUnsignedLongBE();
-                case ELFDATA.ELFDATANONE:
-                default:
-                    throw new InvalidOperationException();
-            }
+                ELFDATA.ELFDATA2LSB => stream.ReadUnsignedLongLE(),
+                ELFDATA.ELFDATA2MSB => stream.ReadUnsignedLongBE(),
+                _ => throw new InvalidOperationException(),
+            };
         }
 
         public void ReadFromStream (Stream stream)
