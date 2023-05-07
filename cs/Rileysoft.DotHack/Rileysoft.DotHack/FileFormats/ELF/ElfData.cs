@@ -1,6 +1,8 @@
 ﻿using Rileysoft.DotHack.Extensions;
 using System.Diagnostics;
 
+#pragma warning disable CA1707
+
 namespace Rileysoft.DotHack.FileFormats.ELF
 {
     // see https://man7.org/linux/man-pages/man5/elf.5.html
@@ -1416,3 +1418,5 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         }
     }
 }
+
+#pragma warning restore CA1707
