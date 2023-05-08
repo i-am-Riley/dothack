@@ -12,6 +12,9 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
         public ElfData ElfData { get; set; }
         public bool Valid { get; set; }
 
+        public byte[] Header { get; set; }
+        public List<DebugSymbol> Symbols { get; set; }
+
         public ElfDebug(Stream stream)
         {
             ElfData = new ElfData();
@@ -69,7 +72,19 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
                 return;
             }
 
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
 
+            Header = new byte[0x1A];
+            stream.Seek(fileOffset, SeekOrigin.Begin);
+            stream.Read(Header, 0, Header.Length);
+
+            Symbols = new List<DebugSymbol>();
+
+            while (stream.Position < fileOffset+sectionSize)
+            {
+                Symbols.Add(new DebugSymbol(stream));
+            }
         }
     }
 }

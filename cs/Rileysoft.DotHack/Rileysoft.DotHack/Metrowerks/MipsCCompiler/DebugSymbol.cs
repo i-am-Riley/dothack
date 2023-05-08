@@ -107,6 +107,14 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             }
         }
 
+        public DebugSymbol(Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            Deserialize(stream);
+        }
+
         public void Deserialize (Stream stream)
         {
             if (stream == null)

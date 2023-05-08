@@ -197,11 +197,9 @@ while (true)
             Console.WriteLine("");
             Console.WriteLine($"Comment: {comment}");
         }
-        
-        foreach (string str in elfData.Strtbl)
-        {
-            Console.WriteLine(str);
-        }
+
+        File.WriteAllLines("strtbl", elfData.Strtbl);
+        Console.WriteLine("Saved strtbl");
     }
     catch (Exception e)
     {
