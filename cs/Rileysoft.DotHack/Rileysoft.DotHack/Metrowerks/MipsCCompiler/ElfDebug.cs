@@ -1,6 +1,11 @@
-﻿using Rileysoft.DotHack.FileFormats.ELF;
+﻿using Rileysoft.DotHack.Extensions;
+using Rileysoft.DotHack.FileFormats.ELF;
+using Rileysoft.DotHack.Metrowerks.MipsCCompiler.Statements;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,19 +16,28 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
     {
         public ElfData ElfData { get; set; }
         public bool Valid { get; set; }
+        public Collection<DebugFile> DebugFiles { get; set; }
 
-        public byte[] Header { get; set; }
-        public List<DebugSymbol> Symbols { get; set; }
+        // The first bit of information at the top of the .debug section
+        // is an integer. It's a relatively small integer but it isn't
+        // representative of a number of items.
+        // in the two files checked with this, the number of items is different
+        // than this number.
+
+        public int Num1 { get; set; }
 
         public ElfDebug(Stream stream)
         {
             ElfData = new ElfData();
-            ElfData.ReadFromStream(stream);
+            DebugFiles = new Collection<DebugFile>();
+            ReadFromStream(stream);
         }
 
         public ElfDebug(ElfData elfData, Stream stream)
         {
             ElfData = elfData;
+            DebugFiles = new Collection<DebugFile>();
+            ReadFromStream(stream);
         }
 
         public void ReadFromStream (Stream stream)
@@ -75,16 +89,8 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
 
-            Header = new byte[0x1A];
             stream.Seek(fileOffset, SeekOrigin.Begin);
-            stream.Read(Header, 0, Header.Length);
-
-            Symbols = new List<DebugSymbol>();
-
-            while (stream.Position < fileOffset+sectionSize)
-            {
-                Symbols.Add(new DebugSymbol(stream));
-            }
+            DebugFiles = ElfDebugProcessor.ReadFromStream(stream, sectionSize);
         }
     }
 }

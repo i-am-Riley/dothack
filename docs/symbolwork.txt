@@ -1,0 +1,9 @@
+
+start
+69 00 00 00 - num1
+
+11 00 - end of block? always appears towards the end of symbols, once per file
+12 00
+	70 00 00 00 - num1
+		
+11 01
