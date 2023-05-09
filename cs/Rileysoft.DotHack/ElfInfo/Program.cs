@@ -42,7 +42,9 @@ while (true)
                             }
                         }
 
+#if DEBUG
                         elfDebug = new ElfDebug(elfData, fs);
+#endif
                     }
                     break;
                 case ELFCLASS.ELFCLASS64:
@@ -57,8 +59,9 @@ while (true)
                                 comment += fs.ReadCString();
                             }
                         }
-
+#if DEBUG
                         elfDebug = new ElfDebug(elfData, fs);
+#endif
                     }
                     break;
                 case ELFCLASS.ELFCLASSNONE:
