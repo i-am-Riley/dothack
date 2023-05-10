@@ -13,11 +13,11 @@ updates:
     directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.Tests/"
     schedule:
       interval: "weekly"
-- package-ecosystem: "nuget"
+  - package-ecosystem: "nuget"
     directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.IOTests/"
     schedule:
       interval: "weekly"
-- package-ecosystem: "nuget"
+  - package-ecosystem: "nuget"
     directory: "cs/Rileysoft.DotHack/ElfInfo/"
     schedule:
       interval: "weekly"
