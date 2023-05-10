@@ -6,18 +6,18 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack"
+    directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack/"
     schedule:
       interval: "weekly"
   - package-ecosystem: "nuget"
-    directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.Tests"
+    directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.Tests/"
     schedule:
       interval: "weekly"
 - package-ecosystem: "nuget"
-    directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.IOTests"
+    directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.IOTests/"
     schedule:
       interval: "weekly"
 - package-ecosystem: "nuget"
-    directory: "cs/Rileysoft.DotHack/ElfInfo"
+    directory: "cs/Rileysoft.DotHack/ElfInfo/"
     schedule:
       interval: "weekly"
