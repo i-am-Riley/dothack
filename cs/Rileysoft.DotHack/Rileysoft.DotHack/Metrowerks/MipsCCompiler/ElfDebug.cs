@@ -33,6 +33,12 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             ReadFromStream(stream);
         }
 
+        public ElfDebug(ElfData elfData)
+        {
+            ElfData = elfData;
+            DebugFiles = new Collection<DebugFile>();
+        }
+
         public ElfDebug(ElfData elfData, Stream stream)
         {
             ElfData = elfData;
@@ -90,7 +96,27 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
                 throw new ArgumentNullException(nameof(stream));
 
             stream.Seek(fileOffset, SeekOrigin.Begin);
-            DebugFiles = ElfDebugProcessor.ReadFromStream(stream, sectionSize);
+            ElfDebugProcessor elfDebugProcessor = new ElfDebugProcessor();
+            try
+            {
+                elfDebugProcessor.ReadFromStream(stream, sectionSize);
+                DebugFiles = new Collection<DebugFile>();
+                var debugFiles = elfDebugProcessor.DebugFiles;
+                foreach (var debugFile in debugFiles)
+                {
+                    DebugFiles.Add(debugFile);
+                }
+            }
+            catch
+            {
+                DebugFiles = new Collection<DebugFile>();
+                var debugFiles = elfDebugProcessor.DebugFiles;
+                foreach (var debugFile in debugFiles)
+                {
+                    DebugFiles.Add(debugFile);
+                }
+                throw;
+            }
         }
     }
 }
