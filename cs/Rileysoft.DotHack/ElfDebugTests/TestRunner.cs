@@ -29,22 +29,38 @@ namespace ElfDebugTest
                 using (FileStream stream = File.OpenRead(Path))
                 {
                     ElfData elfData = new ElfData(stream);
-                    ElfDebug elfDebug = new ElfDebug(elfData, stream);
-                    if (!elfDebug.Valid)
-                        Console.WriteLine("Not valid for debug");
+                    ElfDebug elfDebug = new ElfDebug(elfData);
+
+                    try
+                    {
+                        elfDebug.ReadFromStream(stream);
+
+                        if (!elfDebug.Valid)
+                            Console.WriteLine("Not valid for debug");
+                        return;
+                    }
+                    catch (Exception e)
+                    {
+                        SetColor("41;37");
+                        Console.Write(e.Message);
+                        SetColor("0");
+                        Console.Write("\n");
+
+                        Console.WriteLine("");
+                    }
+
+                    Console.WriteLine($"DebugFiles: {elfDebug.DebugFiles.Count}");
+                    Console.WriteLine("");
                 }
             }
             catch (Exception e)
             {
                 SetColor("41;37");
-                Console.Write("Exception!");
+                Console.Write(e.Message);
                 SetColor("0");
                 Console.Write("\n");
-                Console.WriteLine(e.ToString());
 
                 Console.WriteLine("");
-                Console.WriteLine("Press enter to continue...");
-                Console.ReadLine();
             }
         }
     }
