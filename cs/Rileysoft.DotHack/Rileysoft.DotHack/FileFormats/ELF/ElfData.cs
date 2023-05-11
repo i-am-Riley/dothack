@@ -975,7 +975,7 @@ namespace Rileysoft.DotHack.FileFormats.ELF
 
     public class Elf32_Shdr
     {
-        public ElfData Parent { get; set; }
+        public ElfData? Parent { get; set; }
 
         /// <summary>
         /// This member specifies the name of the section.  Its value
@@ -984,7 +984,7 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         /// </summary>
         public uint sh_name { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// This member categorizes the section's contents and
@@ -1090,7 +1090,7 @@ namespace Rileysoft.DotHack.FileFormats.ELF
 
     public class Elf64_Shdr
     {
-        public ElfData Parent;
+        public ElfData? Parent;
 
         /// <summary>
         /// This member specifies the name of the section.  Its value
@@ -1213,6 +1213,8 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         public byte[] Shstrs { get; set; }
         public List<string> Strtbl { get; set; }
 
+
+
         private ushort ReadUShort(Stream stream)
         {
             if (stream == null)
@@ -1268,6 +1270,19 @@ namespace Rileysoft.DotHack.FileFormats.ELF
                 ELFDATA.ELFDATA2MSB => stream.ReadUnsignedLongBE(),
                 _ => throw new InvalidOperationException(),
             };
+        }
+
+        public ElfData()
+        {
+            Shstrs = Array.Empty<byte>();
+            Strtbl = new List<string>();
+        }
+
+        public ElfData (Stream stream)
+        {
+            Shstrs = Array.Empty<byte>();
+            Strtbl = new List<string>();
+            ReadFromStream(stream);
         }
 
         public void ReadFromStream (Stream stream)
