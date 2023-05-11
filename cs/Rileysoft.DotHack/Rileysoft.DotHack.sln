@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rileysoft.DotHack.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rileysoft.DotHack.IOTests", "Rileysoft.DotHack.IOTests\Rileysoft.DotHack.IOTests.csproj", "{2E777840-F5F2-4021-90EB-C8E1D540A939}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElfInfo", "ElfInfo\ElfInfo.csproj", "{B7D14D33-5301-46BA-9F24-C6E7E7E5B2BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElfInfo", "ElfInfo\ElfInfo.csproj", "{B7D14D33-5301-46BA-9F24-C6E7E7E5B2BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElfDebugTests", "ElfDebugTests\ElfDebugTests.csproj", "{30EB019D-CE98-43B9-BF95-DB6499D60382}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B7D14D33-5301-46BA-9F24-C6E7E7E5B2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7D14D33-5301-46BA-9F24-C6E7E7E5B2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7D14D33-5301-46BA-9F24-C6E7E7E5B2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30EB019D-CE98-43B9-BF95-DB6499D60382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EB019D-CE98-43B9-BF95-DB6499D60382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EB019D-CE98-43B9-BF95-DB6499D60382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EB019D-CE98-43B9-BF95-DB6499D60382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

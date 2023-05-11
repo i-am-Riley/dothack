@@ -10,16 +10,26 @@ using System.Threading.Tasks;
 
 namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
 {
-    public static class ElfDebugProcessor
+    public class ElfDebugProcessor
     {
-        public static Collection<DebugFile> ReadFromStream(Stream stream, long length)
+        public List<DebugFile> DebugFiles { get; set; }
+        public bool BeenRan { get; private set; }
+
+        public ElfDebugProcessor()
+        {
+            DebugFiles = new List<DebugFile>();
+            BeenRan = false;
+        }
+
+        public void ReadFromStream(Stream stream, long length)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
 
+            BeenRan = false;
             long end = stream.Position + length;
 
-            var debugFiles = new Collection<DebugFile>();
+            DebugFiles.Clear();
             DebugFile currentFile = new DebugFile();
             currentFile.Num1 = stream.ReadIntLE();
 
@@ -54,7 +64,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
 
                     // new symbol
                     case 0x0136:
-                        debugFiles.Add(currentFile);
+                        DebugFiles.Add(currentFile);
                         currentFile = new DebugFile();
 
                         var s3601 = new DebugStatement3601(stream);
@@ -75,15 +85,15 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
 
                     default:
                         // unknown command, stream may become misaligned.
-                        Debug.WriteLine($"Unknown debug command: {command.ToStringHexLE()} @ {stream.Position:X8}");
                         var sunknown = new DebugStatement(command);
                         currentFile.Statements.Add(sunknown);
-                        break;
+                        DebugFiles.Add(currentFile);
+                        throw new NotImplementedException($"Unknown debug command: {command.ToStringHexLE()} @ {stream.Position:X8}");
                 }
             }
 
-            debugFiles.Add(currentFile);
-            return debugFiles;
+            DebugFiles.Add(currentFile);
+            BeenRan = true;
         }
     }
 }
