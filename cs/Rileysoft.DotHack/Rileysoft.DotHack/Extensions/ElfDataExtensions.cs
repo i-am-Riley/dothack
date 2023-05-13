@@ -153,7 +153,7 @@ namespace Rileysoft.DotHack.Extensions
                 Console.WriteLine("Shdr32s");
                 for (int i = 0; i < elfData.Shdr32s.Count; i++)
                 {
-                    string name = "unknown";
+                    string name;
                     var shdr32 = elfData.Shdr32s[i];
                     if (shdr32.Name == null)
                         name = "<null>";
@@ -181,7 +181,7 @@ namespace Rileysoft.DotHack.Extensions
                 Console.WriteLine("Shdr64s");
                 for (int i = 0; i < elfData.Shdr64s.Count; i++)
                 {
-                    string name = "unknown";
+                    string name;
                     var shdr64 = elfData.Shdr64s[i];
                     if (shdr64.Name == null)
                         name = "<null>";
