@@ -88,6 +88,13 @@ namespace Rileysoft.DotHack.FileFormats.ELF
         /// </summary>
         public ulong sh_entsize { get; set; }
 
+        public Elf64_Shdr() { }
+        
+        public Elf64_Shdr(ElfData parent)
+        {
+            Parent = parent;
+        }
+
         public void ReadFromStream(Stream stream, bool bigEndian)
         {
             if (bigEndian)
