@@ -17,6 +17,6 @@ var files = new string[]
 foreach (var file in files)
 {
     Console.WriteLine($"Testing: {file}");
-    TestRunner tr = new TestRunner(file);
+    TestRunner tr = new(file);
     tr.Run();
 }

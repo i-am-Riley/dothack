@@ -18,7 +18,7 @@ while (true)
             continue;
         }
 
-        ElfData elfData = new ElfData();
+        ElfData elfData = new();
         string comment = "";
 
         using (FileStream fs = File.OpenRead(path))

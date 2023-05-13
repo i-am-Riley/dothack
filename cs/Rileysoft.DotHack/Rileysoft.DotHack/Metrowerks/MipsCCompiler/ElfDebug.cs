@@ -82,7 +82,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
                 throw new ArgumentNullException(nameof(stream));
 
             stream.Seek(fileOffset, SeekOrigin.Begin);
-            ElfDebugProcessor elfDebugProcessor = new ElfDebugProcessor();
+            ElfDebugProcessor elfDebugProcessor = new();
             try
             {
                 elfDebugProcessor.ReadFromStream(stream, sectionSize);
