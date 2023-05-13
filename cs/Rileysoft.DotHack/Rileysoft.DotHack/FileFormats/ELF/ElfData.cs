@@ -58,9 +58,8 @@ namespace Rileysoft.DotHack.FileFormats.ELF
                     stream.Seek((long)Ehdr.e_shoff, SeekOrigin.Begin);
                     for (int i = 0; i < Ehdr.e_shnum; i++)
                     {
-                        var Shdr32 = new Elf32_Shdr();
+                        var Shdr32 = new Elf32_Shdr(this);
                         Shdr32.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
-                        Shdr32.Parent = this;
                         Shdr32s.Add(Shdr32);
 
 
@@ -108,8 +107,7 @@ namespace Rileysoft.DotHack.FileFormats.ELF
                     stream.Seek((long)Ehdr.e_shoff, SeekOrigin.Begin);
                     for (int i = 0; i < Ehdr.e_shnum; i++)
                     {
-                        var Shdr64 = new Elf64_Shdr();
-                        Shdr64.Parent = this;
+                        var Shdr64 = new Elf64_Shdr(this);
                         Shdr64.ReadFromStream(stream, Ehdr.e_ident.EI_DATA == ELFDATA.ELFDATA2MSB);
                         Shdr64s.Add(Shdr64);
 
