@@ -1,5 +1,7 @@
 ﻿using Rileysoft.DotHack.Extensions;
 
+#pragma warning disable CA1707
+
 namespace Rileysoft.DotHack.Helpers
 {
     public static class _shstrtab
@@ -52,3 +54,5 @@ namespace Rileysoft.DotHack.Helpers
         }
     }
 }
+
+#pragma warning restore CA1707
