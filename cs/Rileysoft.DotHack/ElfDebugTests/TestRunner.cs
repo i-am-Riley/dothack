@@ -49,8 +49,6 @@ namespace ElfDebugTest
                         Console.WriteLine("");
                     }
 
-                    Console.WriteLine($"DebugFiles: {elfDebug.DebugFiles.Count}");
-                    Console.WriteLine("");
                 }
             }
             catch (Exception e)

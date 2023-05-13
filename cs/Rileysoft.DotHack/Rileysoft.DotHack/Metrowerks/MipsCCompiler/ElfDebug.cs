@@ -1,6 +1,5 @@
 ﻿using Rileysoft.DotHack.Extensions;
 using Rileysoft.DotHack.FileFormats.ELF;
-using Rileysoft.DotHack.Metrowerks.MipsCCompiler.Statements;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +15,6 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
     {
         public ElfData ElfData { get; set; }
         public bool Valid { get; set; }
-        public Collection<DebugFile> DebugFiles { get; set; }
 
         // The first bit of information at the top of the .debug section
         // is an integer. It's a relatively small integer but it isn't
@@ -29,20 +27,17 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
         public ElfDebug(Stream stream)
         {
             ElfData = new ElfData();
-            DebugFiles = new Collection<DebugFile>();
             ReadFromStream(stream);
         }
 
         public ElfDebug(ElfData elfData)
         {
             ElfData = elfData;
-            DebugFiles = new Collection<DebugFile>();
         }
 
         public ElfDebug(ElfData elfData, Stream stream)
         {
             ElfData = elfData;
-            DebugFiles = new Collection<DebugFile>();
             ReadFromStream(stream);
         }
 
@@ -100,21 +95,9 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             try
             {
                 elfDebugProcessor.ReadFromStream(stream, sectionSize);
-                DebugFiles = new Collection<DebugFile>();
-                var debugFiles = elfDebugProcessor.DebugFiles;
-                foreach (var debugFile in debugFiles)
-                {
-                    DebugFiles.Add(debugFile);
-                }
             }
             catch
             {
-                DebugFiles = new Collection<DebugFile>();
-                var debugFiles = elfDebugProcessor.DebugFiles;
-                foreach (var debugFile in debugFiles)
-                {
-                    DebugFiles.Add(debugFile);
-                }
                 throw;
             }
         }
