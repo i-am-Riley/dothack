@@ -38,10 +38,7 @@ namespace Rileysoft.DotHack.Extensions
                 if (!commentSections.Any())
                     throw new ArgumentException("no .comment section. can't read comment.");
 
-                var commentSection = commentSections.FirstOrDefault();
-                if (commentSection == null)
-                    throw new ArgumentException("no .comment section. can't read comment.");
-
+                var commentSection = commentSections.FirstOrDefault() ?? throw new ArgumentException("no .comment section. can't read comment.");
                 stream.Seek(commentSection.sh_offset, SeekOrigin.Begin);
 
                 return stream.ReadCString();
@@ -54,10 +51,7 @@ namespace Rileysoft.DotHack.Extensions
             if (!commentSections2.Any())
                 throw new ArgumentException("no .comment section. can't read comment.");
 
-            var commentSection2 = commentSections2.FirstOrDefault();
-            if (commentSection2 == null)
-                throw new ArgumentException("no .comment section. can't read comment.");
-
+            var commentSection2 = commentSections2.FirstOrDefault() ?? throw new ArgumentException("no .comment section. can't read comment.");
             stream.Seek((long)commentSection2.sh_offset, SeekOrigin.Begin);
 
             return stream.ReadCString();
