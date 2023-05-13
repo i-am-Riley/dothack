@@ -12,7 +12,7 @@ namespace Rileysoft.DotHack.SLUS20267.CodeWarrior.PS2Support
         /// </summary>
         /// <param name="ul">unsigned long long</param>
         /// <returns>float</returns>
-        public static float _ulltof (ulong ul)
+        public static float _ulltof(ulong ul)
         {
             return ul;
         }
@@ -23,7 +23,7 @@ namespace Rileysoft.DotHack.SLUS20267.CodeWarrior.PS2Support
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns>true if left is less than right</returns>
-        public static bool _dpflt(double left, double right) 
+        public static bool _dpflt(double left, double right)
         {
             // allocates 16 bytes for local variables, left and right?
             return dpcmp(left, right) < 0;
@@ -57,7 +57,7 @@ namespace Rileysoft.DotHack.SLUS20267.CodeWarrior.PS2Support
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns>1 if left is greater than right, 0 if left is equal to right, -1 if left is less than right</returns>
-        private static int dpcmp (double left, double right)
+        private static int dpcmp(double left, double right)
         {
             if (left > right)
             {

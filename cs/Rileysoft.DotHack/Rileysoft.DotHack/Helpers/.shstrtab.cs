@@ -9,7 +9,7 @@ namespace Rileysoft.DotHack.Helpers
             0x00, 0x2E, 0x73, 0x68, 0x73, 0x74, 0x72, 0x74, 0x61, 0x62, 0x00
         };
 
-        public static List<string> ReadFromStream (Stream stream, bool seek = false, long offset = 0, SeekOrigin origin = SeekOrigin.Begin)
+        public static List<string> ReadFromStream(Stream stream, bool seek = false, long offset = 0, SeekOrigin origin = SeekOrigin.Begin)
         {
             // x278980
             if (stream == null)
@@ -25,11 +25,11 @@ namespace Rileysoft.DotHack.Helpers
             stream.Read(header, 0, header.Length);
 
             bool areEqual = true;
-            for (int i=0; i<header.Length; i++)
-                if (header[i] != Header[i]) 
-                { 
-                    areEqual = false; 
-                    break; 
+            for (int i = 0; i < header.Length; i++)
+                if (header[i] != Header[i])
+                {
+                    areEqual = false;
+                    break;
                 }
 
             if (!areEqual)

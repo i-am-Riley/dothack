@@ -1,13 +1,4 @@
-﻿using Rileysoft.DotHack.Extensions;
-using Rileysoft.DotHack.FileFormats.ELF;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Rileysoft.DotHack.FileFormats.ELF;
 
 namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
 {
@@ -41,7 +32,7 @@ namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
             ReadFromStream(stream);
         }
 
-        public void ReadFromStream (Stream stream)
+        public void ReadFromStream(Stream stream)
         {
             if (ElfData.Shdr32s == null && ElfData.Shdr64s == null)
             {
