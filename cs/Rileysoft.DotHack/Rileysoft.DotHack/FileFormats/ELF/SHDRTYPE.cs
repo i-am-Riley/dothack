@@ -124,4 +124,4 @@ namespace Rileysoft.DotHack.FileFormats.ELF
     }
 }
 
-#pragma warning restore CA!707
+#pragma warning restore CA1707
