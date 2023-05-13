@@ -38,7 +38,7 @@ namespace Rileysoft.DotHack.Helpers
                 throw new InvalidOperationException("invalid header");
 
             string lastString;
-            List<string> @return = new List<string>();
+            List<string> @return = new();
 
             while (stream.Position < stream.Length)
             {
