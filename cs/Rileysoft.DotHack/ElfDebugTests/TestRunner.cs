@@ -28,8 +28,8 @@ namespace ElfDebugTest
             {
                 using (FileStream stream = File.OpenRead(Path))
                 {
-                    ElfData elfData = new ElfData(stream);
-                    ElfDebug elfDebug = new ElfDebug(elfData);
+                    ElfData elfData = new(stream);
+                    ElfDebug elfDebug = new(elfData);
 
                     try
                     {

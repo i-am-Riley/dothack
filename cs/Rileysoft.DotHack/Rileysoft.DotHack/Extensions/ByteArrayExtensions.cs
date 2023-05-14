@@ -98,7 +98,7 @@ namespace Rileysoft.DotHack.Extensions
 
         public static uint ReadUnsignedIntBE(this byte[] bytes, int offset = 0)
         {
-            if (bytes == null) 
+            if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
 
             return (uint)(
@@ -110,7 +110,7 @@ namespace Rileysoft.DotHack.Extensions
 
         public static ulong ReadUnsignedLongBE(this byte[] bytes, int offset = 0)
         {
-            if (bytes == null) 
+            if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
 
             return (ulong)(
@@ -188,7 +188,7 @@ namespace Rileysoft.DotHack.Extensions
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
 
-            ushort value = (ushort)(((ushort)bytes[offset + 1]) + 
+            ushort value = (ushort)(((ushort)bytes[offset + 1]) +
                 ((ushort)bytes[offset]) * ((ushort)0x100));
 
             if (value > short.MaxValue)
@@ -209,7 +209,7 @@ namespace Rileysoft.DotHack.Extensions
             return new UIntPtr(ReadUnsignedIntBE(bytes, offset));
         }
 
-        public static string ToStringHexLE(this byte[] bytes, bool copy=false)
+        public static string ToStringHexLE(this byte[] bytes, bool copy = false)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
@@ -221,7 +221,7 @@ namespace Rileysoft.DotHack.Extensions
                 if (copy)
                 {
                     _bytes = new byte[bytes.Length];
-                    for (int i=0; i<bytes.Length; i++)
+                    for (int i = 0; i < bytes.Length; i++)
                     {
                         _bytes[i] = bytes[i];
                     }
@@ -229,7 +229,7 @@ namespace Rileysoft.DotHack.Extensions
 
                 Array.Reverse(_bytes);
             }
-            
+
             return string.Join("", bytes.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
         }
 
@@ -257,6 +257,9 @@ namespace Rileysoft.DotHack.Extensions
             return string.Join("", bytes.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
         }
 
+        /// <summary>
+        /// Turns byte[] into "8A 23 45"
+        /// </summary>
         public static string ToStringHexExpanded(this byte[] bytes, int offset = 0, int count = -1)
         {
             if (bytes == null)
@@ -267,7 +270,7 @@ namespace Rileysoft.DotHack.Extensions
 
             StringBuilder sb = new StringBuilder();
 
-            for (int i=0; i<count; i++)
+            for (int i = 0; i < count; i++)
             {
                 byte b = bytes[offset + i];
 
@@ -280,7 +283,7 @@ namespace Rileysoft.DotHack.Extensions
             return sb.ToString();
         }
 
-        public static List<string> ReadCStrings (this byte[] bytes)
+        public static List<string> ReadCStrings(this byte[] bytes)
         {
             List<string> strings = new List<string>();
             using (MemoryStream ms = new MemoryStream(bytes))
@@ -294,7 +297,7 @@ namespace Rileysoft.DotHack.Extensions
             return strings;
         }
 
-        public static string ReadCString (this byte[] bytes, long offset = 0)
+        public static string ReadCString(this byte[] bytes, long offset = 0)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
@@ -302,7 +305,7 @@ namespace Rileysoft.DotHack.Extensions
             char[] charBuf = new char[1];
             int len = 0;
 
-            while (offset+len < bytes.Length)
+            while (offset + len < bytes.Length)
             {
                 byte b = bytes[offset + len];
 

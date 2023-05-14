@@ -35,6 +35,6 @@ float _f_ulltof(unsigned long long ul)
 	
 	unsigned long long v1 = ul >> 1;
 	unsigned long long v0 = ul & 1;
-	float f00 = __floatdisf(v1 | v0);
-	return f00 + f00;
+	float f = __floatdisf(v1 | v0);
+	return f + f;
 }

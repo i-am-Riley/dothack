@@ -2,7 +2,7 @@
 {
     public static class StreamExtensions
     {
-        public static uint ReadUnsignedIntLE (this Stream stream)
+        public static uint ReadUnsignedIntLE(this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
@@ -16,7 +16,7 @@
             return bytes.ReadUnsignedIntLE();
         }
 
-        public static ushort ReadUnsignedShortLE (this Stream stream)
+        public static ushort ReadUnsignedShortLE(this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
@@ -30,7 +30,7 @@
             return bytes.ReadUnsignedShortLE();
         }
 
-        public static int ReadIntLE (this Stream stream)
+        public static int ReadIntLE(this Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));

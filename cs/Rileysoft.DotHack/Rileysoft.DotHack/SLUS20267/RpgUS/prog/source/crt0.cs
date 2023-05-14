@@ -16,7 +16,7 @@ namespace Rileysoft.DotHack.SLUS20267.RpgUS.prog.source
 
         public static void _exit()
         {
-             //
+            //
         }
 
         public static void _root()
