@@ -257,6 +257,9 @@ namespace Rileysoft.DotHack.Extensions
             return string.Join("", bytes.Select(b => b.ToString("X2", CultureInfo.InvariantCulture)));
         }
 
+        /// <summary>
+        /// Turns byte[] into "8A 23 45"
+        /// </summary>
         public static string ToStringHexExpanded(this byte[] bytes, int offset = 0, int count = -1)
         {
             if (bytes == null)
