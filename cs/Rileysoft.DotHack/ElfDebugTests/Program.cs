@@ -11,7 +11,8 @@ var files = new string[]
     //"C:\\Users\\Admin\\Desktop\\dothack\\Dot Hack Part 2 - Mutation (USA)\\Slus_205.62", // No .debug
     //"C:\\Users\\Admin\\Desktop\\dothack\\Dot Hack Part 3 - Outbreak (USA)\\Slus_205.63", // No .debug
     //"C:\\Users\\Admin\\Desktop\\dothack\\Dot Hack Part 4 - Quarantine (USA)\\Slus_205.64", // No .debug
-    "C:\\Users\\Admin\\Desktop\\dothack\\PS2 - .hack vol 1 E3 2002\\Slus_202.67"
+    "C:\\Users\\Admin\\Desktop\\dothack\\PS2 - .hack vol 1 E3 2002\\Slus_202.67",
+    "C:\\Users\\Admin\\Desktop\\dothack\\Nickelodeon SpongeBob SquarePants - Battle for Bikini Bottom (USA)\\SLUS_206.80"
 };
 
 foreach (var file in files)

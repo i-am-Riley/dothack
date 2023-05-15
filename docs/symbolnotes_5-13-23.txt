@@ -44,6 +44,10 @@ Headers
 		Only thing different is the first unsigned int
 	69 00 00 00 - 105
 	
+	Spongebob
+	69 00 00 00 - maybe represents a version
+	11 00 12 00 70 00 00 00 11 01 00 00 10 00 21 01 D8 01 10 00 06 01
+	
 File Definitions
 	crt0.s - JP
 	36 01 (00 80 00 00) - R5900 Compiler 
