@@ -348,6 +348,12 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# system.cnf is created during tests and shouldn't be included in git
 cpp/Rileysoft.DotHack/Rileysoft.DotHack.IOTests/system.cnf
+
+# Old project files from 2015-2021
 legacy/
+
+# Build | Project System
 cs/Build/*
