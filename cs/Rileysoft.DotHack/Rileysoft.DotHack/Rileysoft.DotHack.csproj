@@ -13,7 +13,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AnalysisLevel>6.0-all</AnalysisLevel>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Version>0.2.5-nightly</Version>
+    <Version>0.2.6-nightly</Version>
     <PackageProjectUrl>https://github.com/i-am-Riley/dothack</PackageProjectUrl>
   </PropertyGroup>
 
@@ -25,5 +25,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>embedded</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rileysoft.ShiftJIS" Version="1.0.0" />
+  </ItemGroup>
 
 </Project>
