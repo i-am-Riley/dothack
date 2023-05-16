@@ -13,8 +13,13 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AnalysisLevel>6.0-all</AnalysisLevel>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Version>0.2.6-nightly</Version>
+    <Version>0.2.7-nightly</Version>
     <PackageProjectUrl>https://github.com/i-am-Riley/dothack</PackageProjectUrl>
+    <Title>Rileysoft.DotHack</Title>
+    <Description>Code related to .hack//IMOQ</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>dothack</PackageTags>
+    <PackageReleaseNotes>Uses the new split libraries in the Rileysoft.* namespace</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,6 +32,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rileysoft.Common" Version="1.0.0" />
+    <PackageReference Include="Rileysoft.FileFormats.CNF" Version="1.0.0" />
+    <PackageReference Include="Rileysoft.FileFormats.ELF" Version="1.0.0" />
     <PackageReference Include="Rileysoft.ShiftJIS" Version="1.0.0" />
   </ItemGroup>
 

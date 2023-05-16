@@ -1,4 +1,4 @@
-﻿using Rileysoft.DotHack.Extensions;
+﻿using Rileysoft.Common.Extensions;
 
 #pragma warning disable CA1707
 

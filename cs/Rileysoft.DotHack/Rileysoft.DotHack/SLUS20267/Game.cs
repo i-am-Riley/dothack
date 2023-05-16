@@ -1,4 +1,4 @@
-﻿using Rileysoft.DotHack.FileFormats.CNF;
+﻿using Rileysoft.FileFormats.CNF;
 
 namespace Rileysoft.DotHack.SLUS20267
 {

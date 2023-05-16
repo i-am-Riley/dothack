@@ -1,4 +1,4 @@
-﻿using Rileysoft.DotHack.FileFormats.ELF;
+﻿using Rileysoft.FileFormats.ELF;
 
 namespace Rileysoft.DotHack.Metrowerks.MipsCCompiler
 {

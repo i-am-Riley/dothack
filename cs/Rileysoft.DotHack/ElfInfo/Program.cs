@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Rileysoft.DotHack.Extensions;
-using Rileysoft.DotHack.FileFormats.ELF;
+using Rileysoft.FileFormats.ELF;
 using Rileysoft.DotHack.Metrowerks.MipsCCompiler;
 using System.Linq;
 
