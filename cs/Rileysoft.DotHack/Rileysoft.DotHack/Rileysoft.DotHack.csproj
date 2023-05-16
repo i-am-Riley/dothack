@@ -19,6 +19,7 @@
     <Description>Code related to .hack//IMOQ</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>dothack</PackageTags>
+    <PackageReleaseNotes>Uses the new split libraries in the Rileysoft.* namespace</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
