@@ -1,4 +1,5 @@
-﻿using Rileysoft.DotHack.FileFormats.ELF;
+﻿using Rileysoft.FileFormats.ELF;
+using Rileysoft.Common.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

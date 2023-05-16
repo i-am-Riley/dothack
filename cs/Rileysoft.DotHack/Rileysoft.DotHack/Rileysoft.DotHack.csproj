@@ -18,6 +18,7 @@
     <Title>Rileysoft.DotHack</Title>
     <Description>Code related to .hack//IMOQ</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>dothack</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -37,6 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Rileysoft.Common" Version="1.0.0" />
+    <PackageReference Include="Rileysoft.FileFormats.CNF" Version="1.0.0" />
+    <PackageReference Include="Rileysoft.FileFormats.ELF" Version="1.0.0" />
     <PackageReference Include="Rileysoft.ShiftJIS" Version="1.0.0" />
   </ItemGroup>
 

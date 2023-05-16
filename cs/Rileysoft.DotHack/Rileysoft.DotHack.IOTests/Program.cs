@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Rileysoft.DotHack.FileFormats.CNF;
+using Rileysoft.FileFormats.CNF;
 
 Console.WriteLine("IO Tests");
 
