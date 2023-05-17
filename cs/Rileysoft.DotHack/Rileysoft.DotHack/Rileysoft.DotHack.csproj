@@ -19,8 +19,7 @@
     <Description>Code related to .hack//IMOQ</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>dothack</PackageTags>
-    <PackageReleaseNotes>Added CATSInfo (for .mwcats sections in ELF files) and CATSInfoSection
-(sections which appear in .mwcats) for reading Metrowerks CATS sections.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added ReadAllFromStream for CATSInfo</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
