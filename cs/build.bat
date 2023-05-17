@@ -1,5 +1,6 @@
 @echo off
 
+set "SOLUTION_FOLDER=RileySoft.DotHack"
 set "SOLUTION_FILE=Rileysoft.DotHack/Rileysoft.DotHack.sln"
 set "MSBUILD_PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\msbuild.exe"
 set "VSTEST_PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
@@ -10,8 +11,7 @@ set "TEST_DLL_PATTERN=bin/**/**/*Tests.dll"
 set "TEST_RESULTS_DIR=TestResults"
 set "TEST_RESULTS_FILE=*.trx"
 
-
-for /f "delims=" %%d in ('dir /ad /b /s Rileysoft.DotHack\* ^| findstr /i /e "\bin\Release" ^| findstr /v /i /r /c:".*Tests"') do (
+for /f "delims=" %%d in ('dir /ad /b /s %SOLUTION_FOLDER%\* ^| findstr /i /e "\bin\Release" ^| findstr /v /i /r /c:".*Tests"') do (
 	rd /s /q "%%d"
 )
 
@@ -22,7 +22,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 echo Running tests...
-for /f "delims=" %%d in ('dir /ad /b /s Rileysoft.DotHack\* ^| findstr /i /e "\bin\Release" ^| findstr /i /r /c:".*Tests"') do (
+for /f "delims=" %%d in ('dir /ad /b /s %SOLUTION_FOLDER%\* ^| findstr /i /e "\bin\Release" ^| findstr /i /r /c:".*Tests"') do (
   for /f "tokens=*" %%f in ('dir /b %%d\net6.0 ^| findstr /i /r /c:"\.Tests.dll"') do (
 	echo "Testing %%d\net6.0\%%f"
 	rd /s /q %TEST_RESULTS_DIR%
@@ -35,7 +35,7 @@ if exist %OUTPUT_DIR% rd /s /q %OUTPUT_DIR%
 if not exist %OUTPUT_DIR% mkdir %OUTPUT_DIR%
 
 echo Copying files to %OUTPUT_DIR%...
-for /f "delims=" %%d in ('dir /ad /b /s Rileysoft.DotHack\* ^| findstr /i /e "\bin\Release" ^| findstr /v /i /r /c:".*Tests"') do (
+for /f "delims=" %%d in ('dir /ad /b /s %SOLUTION_FOLDER%\* ^| findstr /i /e "\bin\Release" ^| findstr /v /i /r /c:".*Tests"') do (
   xcopy /e /s /y /q "%%d" "%OUTPUT_DIR%\"
 )
 
