@@ -1,4 +1,5 @@
-﻿using Rileysoft.FileFormats.ELF;
+﻿using Rileysoft.DotHack.Extensions;
+using Rileysoft.FileFormats.ELF;
 using System.Collections.ObjectModel;
 
 namespace Rileysoft.DotHack.Metrowerks.CATS
@@ -8,6 +9,55 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
     /// </summary>
     public class CATSInfo
     {
+        /// <summary>
+        /// Reads all CATSInfos into a Collection
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static Collection<CATSInfo> ReadAllFromStream(Stream stream, ElfData elfData)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            if (elfData == null)
+                throw new ArgumentNullException(nameof(elfData));
+
+            Collection<CATSInfo> collection = new Collection<CATSInfo>();
+
+            if (elfData.Is32Bit())
+            {
+                var sections32 = elfData.Shdr32s;
+                if (sections32 == null)
+                    throw new InvalidOperationException("32-bit Section Headers were not loaded.");
+
+                foreach (var section in sections32)
+                {
+                    if (IsSection(section))
+                    {
+                        CATSInfo info32 = new(stream, section);
+                        collection.Add(info32);
+                    }
+                }
+            }
+            else
+            {
+                var sections64 = elfData.Shdr64s;
+                if (sections64 == null)
+                    throw new InvalidOperationException("64-bit Section Headers were not loaded.");
+
+                foreach (var section in sections64)
+                {
+                    if (IsSection(section))
+                    {
+                        CATSInfo info64 = new(stream, section);
+                        collection.Add(info64);
+                    }
+                }
+            }
+
+            return collection;
+        }
+
         /*
 			*** CATS INFO (.mwcats) ***
 
@@ -22,7 +72,7 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
         /// <summary>
         /// Checks if the provided section is a CATSInfo section
         /// </summary>
-        public static bool IsSection (string sectionName)
+        public static bool IsSection(string sectionName)
         {
             return sectionName == SectionName;
         }
@@ -31,10 +81,10 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
         /// Checks if the provided section is a CATSInfo section
         /// </summary>
         /// <exception cref="ArgumentNullException"></exception>
-        public static bool IsSection (Elf32_Shdr shdr)
+        public static bool IsSection(Elf32_Shdr shdr)
         {
             if (shdr == null)
-                throw new ArgumentNullException(nameof (shdr));
+                throw new ArgumentNullException(nameof(shdr));
 
             return shdr.Name == SectionName;
         }
@@ -43,10 +93,10 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
         /// Checks if the provided section is a CATSInfo section
         /// </summary>
         /// <exception cref="ArgumentNullException"></exception>
-        public static bool IsSection (Elf64_Shdr shdr)
+        public static bool IsSection(Elf64_Shdr shdr)
         {
             if (shdr == null)
-                throw new ArgumentNullException (nameof (shdr));
+                throw new ArgumentNullException(nameof(shdr));
 
             return shdr.Name == SectionName;
         }
@@ -69,10 +119,10 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
         public CATSInfo(Stream stream, Elf32_Shdr shdr) : this()
         {
             if (stream == null)
-                throw new ArgumentNullException(nameof (stream));
+                throw new ArgumentNullException(nameof(stream));
 
             if (shdr == null)
-                throw new ArgumentNullException(nameof (shdr));
+                throw new ArgumentNullException(nameof(shdr));
 
             if (!IsSection(shdr))
                 throw new ArgumentException("not a valid section for CATSInfo");
@@ -111,7 +161,7 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
 
             if (!stream.CanRead)
                 throw new ArgumentException("cannot read from stream");
-            
+
             long endPos = stream.Position + size;
 
             Sections.Clear();

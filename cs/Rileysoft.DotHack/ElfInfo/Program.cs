@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Rileysoft.DotHack.Extensions;
 using Rileysoft.FileFormats.ELF;
-using System.Linq;
 
 Console.WriteLine("ElfInfo");
 

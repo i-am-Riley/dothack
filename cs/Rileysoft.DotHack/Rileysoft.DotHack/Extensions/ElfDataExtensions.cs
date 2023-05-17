@@ -1,20 +1,14 @@
-﻿using Rileysoft.FileFormats.ELF;
-using Rileysoft.Common.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using Rileysoft.Common.Extensions;
+using Rileysoft.FileFormats.ELF;
 
 namespace Rileysoft.DotHack.Extensions
 {
     public static class ElfDataExtensions
     {
-        public static bool Is32Bit (this ElfData elfData)
+        public static bool Is32Bit(this ElfData elfData)
         {
             if (elfData == null)
-                throw new ArgumentNullException (nameof(elfData));
+                throw new ArgumentNullException(nameof(elfData));
 
             if (elfData.Ehdr.e_ident.EI_CLASS == ELFCLASS.ELFCLASS32)
                 return true;
@@ -22,7 +16,7 @@ namespace Rileysoft.DotHack.Extensions
             return false;
         }
 
-        public static string GetComment (this ElfData elfData, Stream stream)
+        public static string GetComment(this ElfData elfData, Stream stream)
         {
             if (elfData == null)
                 throw new ArgumentNullException(nameof(elfData));
@@ -58,7 +52,7 @@ namespace Rileysoft.DotHack.Extensions
             return stream.ReadCString();
         }
 
-        public static void DbgIdent (this ElfData elfData)
+        public static void DbgIdent(this ElfData elfData)
         {
             if (elfData == null)
                 throw new ArgumentNullException(nameof(elfData));
@@ -73,7 +67,7 @@ namespace Rileysoft.DotHack.Extensions
             Console.WriteLine("");
         }
 
-        public static void DbgEhdr (this ElfData elfData)
+        public static void DbgEhdr(this ElfData elfData)
         {
             if (elfData == null)
                 throw new ArgumentNullException(nameof(elfData));
@@ -95,7 +89,7 @@ namespace Rileysoft.DotHack.Extensions
 
         }
 
-        public static void DbgPhdr (this ElfData elfData)
+        public static void DbgPhdr(this ElfData elfData)
         {
             if (elfData == null)
                 throw new ArgumentNullException(nameof(elfData));
@@ -138,7 +132,7 @@ namespace Rileysoft.DotHack.Extensions
             Console.WriteLine("");
         }
 
-        public static void DbgShdr (this ElfData elfData)
+        public static void DbgShdr(this ElfData elfData)
         {
             if (elfData == null)
                 throw new ArgumentNullException(nameof(elfData));
@@ -200,7 +194,7 @@ namespace Rileysoft.DotHack.Extensions
             }
         }
 
-        public static void DumpStrtbl (this ElfData elfData, string path)
+        public static void DumpStrtbl(this ElfData elfData, string path)
         {
             if (elfData == null)
                 throw new ArgumentNullException(nameof(elfData));

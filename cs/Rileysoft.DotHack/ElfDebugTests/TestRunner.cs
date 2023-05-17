@@ -1,9 +1,5 @@
-﻿using Rileysoft.FileFormats.ELF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Rileysoft.DotHack.Metrowerks.CATS;
+using Rileysoft.FileFormats.ELF;
 
 namespace ElfDebugTest
 {
@@ -11,7 +7,7 @@ namespace ElfDebugTest
     {
         private readonly string Path;
 
-        private static void SetColor (string color)
+        private static void SetColor(string color)
         {
             Console.Write($"\u001b[{color}m");
         }
@@ -28,11 +24,15 @@ namespace ElfDebugTest
                 using (FileStream stream = File.OpenRead(Path))
                 {
                     ElfData elfData = new(stream);
-                    
 
                     try
                     {
-                        
+                        var mwcatsSections = CATSInfo.ReadAllFromStream(stream, elfData);
+                        foreach (var section in mwcatsSections)
+                        {
+                            Console.WriteLine($".mwcats section has {section.Sections.Count} CATSInfoSections");
+                        }
+
                         return;
                     }
                     catch (Exception e)
