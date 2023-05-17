@@ -13,13 +13,14 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AnalysisLevel>6.0-all</AnalysisLevel>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Version>0.2.8-nightly</Version>
+    <Version>0.2.9-nightly</Version>
     <PackageProjectUrl>https://github.com/i-am-Riley/dothack</PackageProjectUrl>
     <Title>Rileysoft.DotHack</Title>
     <Description>Code related to .hack//IMOQ</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>dothack</PackageTags>
-    <PackageReleaseNotes>Uses the new split libraries in the Rileysoft.* namespace</PackageReleaseNotes>
+    <PackageReleaseNotes>Added CATSInfo (for .mwcats sections in ELF files) and CATSInfoSection
+(sections which appear in .mwcats) for reading Metrowerks CATS sections.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
