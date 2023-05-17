@@ -74,7 +74,7 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
         /// </summary>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public void ReadFromStream (Stream stream)
+        public void ReadFromStream(Stream stream)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));

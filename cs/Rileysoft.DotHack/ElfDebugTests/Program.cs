@@ -20,3 +20,5 @@ foreach (var file in files)
     TestRunner tr = new(file);
     tr.Run();
 }
+
+Console.ReadLine();
