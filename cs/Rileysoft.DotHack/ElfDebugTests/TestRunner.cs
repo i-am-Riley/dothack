@@ -1,5 +1,4 @@
 ﻿using Rileysoft.FileFormats.ELF;
-using Rileysoft.DotHack.Metrowerks.MipsCCompiler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,14 +28,11 @@ namespace ElfDebugTest
                 using (FileStream stream = File.OpenRead(Path))
                 {
                     ElfData elfData = new(stream);
-                    ElfDebug elfDebug = new(elfData);
+                    
 
                     try
                     {
-                        elfDebug.ReadFromStream(stream);
-
-                        if (!elfDebug.Valid)
-                            Console.WriteLine("Not valid for debug");
+                        
                         return;
                     }
                     catch (Exception e)

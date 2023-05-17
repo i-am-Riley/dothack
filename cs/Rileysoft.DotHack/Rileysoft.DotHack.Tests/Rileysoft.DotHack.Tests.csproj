@@ -10,48 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\crt0.s.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c.1.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._dpfge.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._dpfgt.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._dpflt.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._f_ulltof.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.1.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.mwBload.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.mwInit.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.mwLoadOverlay.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.1.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.AddTbl.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.ccMalloc.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.ccMemReduce.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.SearchFree.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp._ccFree.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp._ccMalloc.sym" />
-    <None Remove="Metrowerks\MipsCCompiler\Symbols\system.cpp.1.sym" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\crt0.s.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c.1.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._dpfge.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._dpfgt.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._dpflt.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\gcc_wrapper.c._f_ulltof.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.1.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.mwBload.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.mwInit.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\mwUtils_PS2.c.mwLoadOverlay.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.1.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.AddTbl.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.ccMalloc.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.ccMemReduce.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp.SearchFree.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp._ccFree.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\sysmem.cpp._ccMalloc.sym" />
-    <EmbeddedResource Include="Metrowerks\MipsCCompiler\Symbols\system.cpp.1.sym" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
     <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
