@@ -2,9 +2,12 @@
 
 namespace Rileysoft.DotHack.Metrowerks.CATS
 {
+    /// <summary>
+    /// Sections which appear in the .mwcats Shdrs in an ELF file
+    /// </summary>
     public class CATSInfoSection
     {
-        /*
+        /* - Raw output from Metrowerks CATS
 			*** CATS INFO (.mwcats) ***
 
 00000000	Section type	2
@@ -20,13 +23,30 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
 00000070		0000000c 
         */
 
+        /// <summary>
+        /// Formally called Section type by Metrowerks CATS.
+        /// </summary>
         public byte SectionType { get; set; }
+
+        /// <summary>
+        /// Formally called nstd-exit by Metrowerks CATS.
+        /// If set to <see langword="true"/>, the Offset property is read from the stream.
+        /// </summary>
         public bool NSTDExit { get; set; }
+
+        /// <summary>
+        /// Formally called size by Metrowerks CATS.
+        /// </summary>
         public ushort Size { get; set; }
+
+        /// <summary>
+        /// Formally called address by Metrowerks CATS.
+        /// </summary>
         public int Address { get; set; }
 
         /// <summary>
-        /// Only read if NSTDExit is true.
+        /// Formally called offset by Metrowerks CATS.
+        /// Only read if NSTDExit is <see langword="true"/>.
         /// </summary>
         public int Offset { get; set; }
 
@@ -39,11 +59,21 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
             Offset = -1;
         }
 
+        /// <summary>
+        /// Reads the Section from the Stream
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public CATSInfoSection(Stream stream) : this()
         {
             ReadFromStream(stream);
         }
 
+        /// <summary>
+        /// Reads the Section from the Stream
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public void ReadFromStream (Stream stream)
         {
             if (stream == null)
