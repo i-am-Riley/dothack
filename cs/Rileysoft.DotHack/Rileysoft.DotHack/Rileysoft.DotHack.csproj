@@ -13,7 +13,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AnalysisLevel>6.0-all</AnalysisLevel>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Version>0.2.7-nightly</Version>
+    <Version>0.2.8-nightly</Version>
     <PackageProjectUrl>https://github.com/i-am-Riley/dothack</PackageProjectUrl>
     <Title>Rileysoft.DotHack</Title>
     <Description>Code related to .hack//IMOQ</Description>
