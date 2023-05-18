@@ -1,4 +1,5 @@
 ﻿using Rileysoft.Common.Extensions;
+using System.Collections.ObjectModel;
 
 namespace Rileysoft.DotHack.Metrowerks.CATS
 {
@@ -32,7 +33,7 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
         /// Formally called nstd-exit by Metrowerks CATS.
         /// If set to <see langword="true"/>, the Offset property is read from the stream.
         /// </summary>
-        public bool NSTDExit { get; set; }
+        public byte NSTDExit { get; set; }
 
         /// <summary>
         /// Formally called size by Metrowerks CATS.
@@ -44,19 +45,28 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
         /// </summary>
         public int Address { get; set; }
 
+        private int[] _Offset;
+
         /// <summary>
         /// Formally called offset by Metrowerks CATS.
-        /// Only read if NSTDExit is <see langword="true"/>.
+        /// Returns a new <see cref="Collection{int}"/> created for an array of offsets
+        /// with the same length as <see cref="NSTDExit"/>.
         /// </summary>
-        public int Offset { get; set; }
+        public Collection<int> Offsets
+        {
+            get
+            {
+                return new Collection<int>(_Offset);
+            }
+        }
 
         public CATSInfoSection()
         {
             SectionType = 0;
-            NSTDExit = false;
+            NSTDExit = 0;
             Size = 0;
             Address = 0;
-            Offset = -1;
+            _Offset = Array.Empty<int>();
         }
 
         /// <summary>
@@ -88,13 +98,20 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
             SectionType = byteBuffer[0];
 
             stream.Read(byteBuffer, 0, 1);
-            NSTDExit = byteBuffer[0] != 0;
+            NSTDExit = byteBuffer[0];
 
             Size = stream.ReadUnsignedShortLE();
             Address = stream.ReadIntLE();
 
-            if (NSTDExit)
-                Offset = stream.ReadIntLE();
+            if (NSTDExit == 0)
+                _Offset = Array.Empty<int>(); // Prevents allocation of an empty array.
+            else
+                _Offset = new int[NSTDExit];
+
+            for (int i=0; i<NSTDExit; i++)
+            {
+                _Offset[i] = stream.ReadIntLE();
+            }
         }
     }
 }
