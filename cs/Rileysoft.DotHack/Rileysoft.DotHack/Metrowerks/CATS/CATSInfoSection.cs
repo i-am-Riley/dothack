@@ -113,5 +113,71 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
                 _Offset[i] = stream.ReadIntLE();
             }
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (!(obj is CATSInfoSection))
+                return false;
+
+            var objCast = (CATSInfoSection)obj;
+
+            if (objCast.SectionType != SectionType)
+                return false;
+
+            if (objCast.NSTDExit != NSTDExit) 
+                return false;
+            
+            if (objCast.Size != Size)
+                return false;
+
+            if (objCast.Address != Address) 
+                return false;
+
+            if (objCast._Offset.Length != _Offset.Length) 
+                return false;
+
+            for (int i=0; i<_Offset.Length; i++)
+            {
+                int left = _Offset[i];
+                int right = objCast._Offset[i];
+
+                if (left != right)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + SectionType.GetHashCode();
+                hash = hash * 23 + NSTDExit.GetHashCode();
+                hash = hash * 23 + Size.GetHashCode();
+                hash = hash * 23 + Address.GetHashCode();
+
+                for (int i=0; i<_Offset.Length; i++)
+                {
+                    hash = hash * 23 + _Offset[i].GetHashCode();
+                }
+                
+                return hash;
+            }
+        }
+
+        public static bool operator ==(CATSInfoSection left, CATSInfoSection right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(CATSInfoSection left, CATSInfoSection right)
+        {
+            return !(left == right);
+        }
     }
 }
