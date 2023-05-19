@@ -1,5 +1,6 @@
 ﻿using Rileysoft.DotHack.Metrowerks.CATS;
 using Rileysoft.FileFormats.ELF;
+using System.Diagnostics;
 
 namespace ElfDebugTest
 {
@@ -19,6 +20,8 @@ namespace ElfDebugTest
 
         public void Run()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             try
             {
                 using (FileStream stream = File.OpenRead(Path))
@@ -27,11 +30,19 @@ namespace ElfDebugTest
 
                     try
                     {
+                        long memoryUsageBefore = GC.GetTotalMemory(false);
                         var mwcatsSections = CATSInfo.ReadAllFromStream(stream, elfData);
                         foreach (var section in mwcatsSections)
                         {
                             Console.WriteLine($".mwcats section has {section.Sections.Count} CATSInfoSections");
                         }
+                        Console.WriteLine("Parsed in " + stopwatch.Elapsed.ToString());
+                        stopwatch.Stop();
+                        long memoryUsageAfter = GC.GetTotalMemory(false);
+
+                        long difference = memoryUsageAfter - memoryUsageBefore;
+                        Console.WriteLine("Memory Usage Change: " + difference);
+                        Console.WriteLine("");
 
                         return;
                     }
@@ -56,6 +67,9 @@ namespace ElfDebugTest
 
                 Console.WriteLine("");
             }
+            Console.WriteLine("Parsed in " + stopwatch.Elapsed.ToString());
+            stopwatch.Stop();
         }
+
     }
 }

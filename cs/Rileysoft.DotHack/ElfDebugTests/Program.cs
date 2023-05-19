@@ -21,4 +21,5 @@ foreach (var file in files)
     tr.Run();
 }
 
+Console.WriteLine("Press enter to exit");
 Console.ReadLine();
