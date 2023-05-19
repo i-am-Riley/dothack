@@ -6,7 +6,7 @@ namespace Rileysoft.DotHack.Metrowerks.CATS
     /// <summary>
     /// Sections which appear in the .mwcats Shdrs in an ELF file
     /// </summary>
-    public class CATSInfoSection
+    public struct CATSInfoSection
     {
         /* - Raw output from Metrowerks CATS
 			*** CATS INFO (.mwcats) ***
