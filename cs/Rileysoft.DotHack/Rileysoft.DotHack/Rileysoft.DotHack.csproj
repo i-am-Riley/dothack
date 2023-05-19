@@ -13,13 +13,13 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AnalysisLevel>6.0-all</AnalysisLevel>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <Version>0.2.11-nightly</Version>
+    <Version>0.2.12-nightly</Version>
     <PackageProjectUrl>https://github.com/i-am-Riley/dothack</PackageProjectUrl>
     <Title>Rileysoft.DotHack</Title>
     <Description>Code related to .hack//IMOQ</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>dothack</PackageTags>
-    <PackageReleaseNotes>Fixes CATSInfoSection misreading offsets</PackageReleaseNotes>
+    <PackageReleaseNotes>Changed CATSInfoSection to struct</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
