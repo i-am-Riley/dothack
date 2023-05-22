@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rileysoft.Common" Version="1.0.0" />
+    <PackageReference Include="Rileysoft.Common" Version="1.1.0" />
     <PackageReference Include="Rileysoft.FileFormats.CNF" Version="1.0.0" />
     <PackageReference Include="Rileysoft.FileFormats.ELF" Version="1.0.0" />
     <PackageReference Include="Rileysoft.ShiftJIS" Version="1.0.0" />
