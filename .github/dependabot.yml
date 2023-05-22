@@ -8,16 +8,24 @@ updates:
   - package-ecosystem: "nuget"
     directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    commit-message:
+      prefix: "Dependencies: "
   - package-ecosystem: "nuget"
     directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.Tests/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    commit-message:
+      prefix: "Dependencies: "
   - package-ecosystem: "nuget"
     directory: "cs/Rileysoft.DotHack/Rileysoft.DotHack.IOTests/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    commit-message:
+      prefix: "Dependencies: "
   - package-ecosystem: "nuget"
     directory: "cs/Rileysoft.DotHack/ElfInfo/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    commit-message:
+      prefix: "Dependencies: "
