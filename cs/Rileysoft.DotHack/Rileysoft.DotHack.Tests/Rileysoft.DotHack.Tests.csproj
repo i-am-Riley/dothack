@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Rileysoft.DotHack\Rileysoft.DotHack.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DWARF\" />
+  </ItemGroup>
+
 </Project>
