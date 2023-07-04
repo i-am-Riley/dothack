@@ -46,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="JpRelease\" />
     <Folder Include="UsE3\" />
     <Folder Include="UsBandaiDemo\" />
     <Folder Include="UsRelease\" />
