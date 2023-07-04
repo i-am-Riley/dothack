@@ -45,4 +45,11 @@
     <PackageReference Include="Rileysoft.ShiftJIS" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="JpRelease\" />
+    <Folder Include="UsE3\" />
+    <Folder Include="UsBandaiDemo\" />
+    <Folder Include="UsRelease\" />
+  </ItemGroup>
+
 </Project>
