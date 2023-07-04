@@ -1,4 +1,5 @@
 ﻿using Rileysoft.Common.Extensions;
+using System.Collections.ObjectModel;
 
 #pragma warning disable CA1707
 
@@ -11,7 +12,7 @@ namespace Rileysoft.DotHack.Helpers
             0x00, 0x2E, 0x73, 0x68, 0x73, 0x74, 0x72, 0x74, 0x61, 0x62, 0x00
         };
 
-        public static List<string> ReadFromStream(Stream stream, bool seek = false, long offset = 0, SeekOrigin origin = SeekOrigin.Begin)
+        public static ReadOnlyCollection<string> ReadFromStream(Stream stream, bool seek = false, long offset = 0, SeekOrigin origin = SeekOrigin.Begin)
         {
             // x278980
             if (stream == null)
@@ -50,7 +51,7 @@ namespace Rileysoft.DotHack.Helpers
                 @return.Add(lastString);
             }
 
-            return @return;
+            return @return.AsReadOnly();
         }
     }
 }
